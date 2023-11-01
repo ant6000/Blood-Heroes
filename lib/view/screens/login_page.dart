@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red.shade900,
-        title: const Text('Blood Fighter',
+        title: const Text('Blood Fighters',
             style: TextStyle(fontSize: 20, color: Colors.white)),
         centerTitle: true,
       ),
@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(onPressed: () {}, child: const Text('Forgor Password')),
+                TextButton(onPressed: () {}, child: const Text('Forgor Password?')),
                 Row(
                   children: [
                     Checkbox(value: value, onChanged: (value) {

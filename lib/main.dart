@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_,child) {
         return MaterialApp(
-          title: 'Blood Fighter',
+          title: 'Blood Fighters',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
