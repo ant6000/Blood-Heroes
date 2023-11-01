@@ -1,6 +1,6 @@
-import 'package:blood_heroes/view/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'view/screens/login_page.dart';
 
 void main() {
   runApp(const MyApp());

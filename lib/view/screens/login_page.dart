@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatelessWidget {
-   LoginPage({super.key});
+  LoginPage({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool value = false;
+  final bool value = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('/images/save_life_logo.png'),
+            Image.asset('images/save_life_logo_light.png',width: 200,height: 200,),
             SizedBox(
               height: 10.h,
             ),
