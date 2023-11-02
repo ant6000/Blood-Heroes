@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "455166254173-h5u6c8emdjk0pb503qjbirts8p33pv8q.apps.googleusercontent.com",
+              "client_id": "455166254173-6q5h7kn9tfjot961fc48m51smu48l8b9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.footwear.RunnerTests"
+                "bundle_id": "com.example.bloodHeroes.RunnerTests"
               }
             }
           ]
@@ -68,10 +68,10 @@
               "client_type": 3
             },
             {
-              "client_id": "455166254173-h5u6c8emdjk0pb503qjbirts8p33pv8q.apps.googleusercontent.com",
+              "client_id": "455166254173-6q5h7kn9tfjot961fc48m51smu48l8b9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.footwear.RunnerTests"
+                "bundle_id": "com.example.bloodHeroes.RunnerTests"
               }
             }
           ]

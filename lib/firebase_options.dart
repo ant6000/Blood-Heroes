@@ -45,13 +45,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyAUOaHOV4RqdJeDEQ_3Gm2ty5AxUlRr8RY',
-    appId: '1:455166254173:web:804e2bb171f4a0716e41b4',
+    appId: '1:455166254173:web:29d76511f0dd273a6e41b4',
     messagingSenderId: '455166254173',
     projectId: 'test-flutter-a0656',
     authDomain: 'test-flutter-a0656.firebaseapp.com',
     databaseURL: 'https://test-flutter-a0656-default-rtdb.firebaseio.com',
     storageBucket: 'test-flutter-a0656.appspot.com',
-    measurementId: 'G-173F720RTJ',
+    measurementId: 'G-80FPYP09TH',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -76,7 +76,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyB9PL3E2OFbqGt0UW9Az1e5rKXhtwl0wfg',
-    appId: '1:455166254173:ios:a3cce513c6e663e26e41b4',
+    appId: '1:455166254173:ios:642d98fa13d12ace6e41b4',
     messagingSenderId: '455166254173',
     projectId: 'test-flutter-a0656',
     databaseURL: 'https://test-flutter-a0656-default-rtdb.firebaseio.com',

@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Rx<User?> user = Rx<User?>(null);
   RxBool isLoading = false.obs; // Add a loading indicator
+  RxBool passwordShow = true.obs;
+  RxBool isChecked = false.obs;
 
   @override
   void onInit() {
