@@ -11,6 +11,7 @@ class RegistrationPage extends StatelessWidget {
   final locationController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final bloodGroupController = TextEditingController();
   final authController = Get.put(AuthController());
 
   @override
@@ -58,7 +59,6 @@ class RegistrationPage extends StatelessWidget {
             SizedBox(height: 10.h),
             TextField(
               controller: emailController,
-              obscureText: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.email),
@@ -67,7 +67,18 @@ class RegistrationPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20))),
             ),
             SizedBox(height: 10.h),
-            Obx(() {
+            TextField(
+              controller: phoneController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.phone),
+                  label: const Text('Enter your Phone Number'),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
+            ),
+            SizedBox(height: 10.h),
+            Obx(
+              () {
                 return TextField(
                   controller: passwordController,
                   obscureText: authController.passwordShow.value,
@@ -89,6 +100,7 @@ class RegistrationPage extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             DropdownMenu(
+              controller: bloodGroupController,
               width: 320.w,
               leadingIcon: const Icon(Icons.water_drop),
               label: const Text('Select your blood group'),
@@ -117,7 +129,10 @@ class RegistrationPage extends StatelessWidget {
                       onPressed: () {
                         Get.offNamed('/login');
                       },
-                      child: const Text('Already have an account?',style: TextStyle(color: Colors.green),)),
+                      child: const Text(
+                        'Already have an account?',
+                        style: TextStyle(color: Colors.green),
+                      )),
                 ),
                 Expanded(
                   flex: 1, // You can adjust the flex values as needed
@@ -143,9 +158,13 @@ class RegistrationPage extends StatelessWidget {
             //SizedBox(height: 10.h),
             GestureDetector(
               onTap: () {
-                authController.signInWithEmail(
+                authController.registration(
                   emailController.text,
                   passwordController.text,
+                  nameController.text,
+                  phoneController.text,
+                  locationController.text,
+                  bloodGroupController.text
                 );
               },
               child: Obx(

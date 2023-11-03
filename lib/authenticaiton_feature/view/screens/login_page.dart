@@ -91,7 +91,7 @@ class LoginPage extends StatelessWidget {
             //SizedBox(height: 10.h),
             GestureDetector(
               onTap: () {
-                authController.signInWithEmail(
+                authController.login(
                   emailController.text,
                   passwordController.text,
                 );
@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                                 AlwaysStoppedAnimation<Color>(Colors.blue))
                         : Text('Login',
                             style: TextStyle(
-                                fontSize: 25.sp, color: Colors.white)),
+                                fontSize: 25, color: Colors.white)),
                   ),
                 ),
               ),
@@ -127,15 +127,16 @@ class LoginPage extends StatelessWidget {
                     border: Border.all(width: 1, color: Colors.red.shade900),
                     borderRadius: BorderRadius.circular(20)),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
                       Icons.phone,
                       color: Colors.red.shade900,
                     ),
+                    SizedBox(width: 80.w,),
                     Text('Login with Phone',
                         style: TextStyle(
-                            fontSize: 25.sp, color: Colors.red.shade900)),
+                            fontSize: 25, color: Colors.red.shade900)),
                   ],
                 ),
               ),
@@ -147,7 +148,7 @@ class LoginPage extends StatelessWidget {
                   Get.offNamed('/registraiton');
                 },
                 child: Text('Register new account >',
-                    style: TextStyle(fontSize: 18.sp, color: Colors.green)),
+                    style: TextStyle(fontSize: 18, color: Colors.green)),
               ),
             ),
           ],

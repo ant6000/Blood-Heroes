@@ -1,24 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:blood_fighters/authenticaiton_feature/remote%20repository/auth_repo.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Rx<User?> user = Rx<User?>(null);
-  RxBool isLoading = false.obs; // Add a loading indicator
+  RxBool isLoading = false.obs;
   RxBool passwordShow = true.obs;
   RxBool isChecked = false.obs;
 
-  @override
-  void onInit() {
-    user.bindStream(_auth.authStateChanges());
-    super.onInit();
-  }
-
-  Future<void> signInWithEmail(String email, String password) async {
+  Future<void> login(String email, String password) async {
     try {
-      isLoading(true); // Set loading to true while authenticating
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      isLoading(true);
+      await AuthRepo.signIn(email, password);
       Get.offNamed('/homePage'); // Navigate on successful login
     } catch (e) {
       Get.snackbar(
@@ -29,5 +21,10 @@ class AuthController extends GetxController {
     } finally {
       isLoading(false); // Set loading back to false
     }
+  }
+
+  void registration(String email, String password, String name, String phone,
+      String address, String bloodGroup) async {
+    AuthRepo.signUp(email, password, name, phone, address, bloodGroup);
   }
 }
