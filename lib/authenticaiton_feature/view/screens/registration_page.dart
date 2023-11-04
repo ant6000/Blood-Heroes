@@ -53,6 +53,7 @@ class RegistrationPage extends StatelessWidget {
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.pin_drop),
                   label: const Text('Enter your location'),
+                  hintText: 'Enter Thana, Division',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),

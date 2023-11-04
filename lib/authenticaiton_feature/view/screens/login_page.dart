@@ -108,7 +108,7 @@ class LoginPage extends StatelessWidget {
                         ? const CircularProgressIndicator(
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.blue))
-                        : Text('Login',
+                        : const Text('Login',
                             style: TextStyle(
                                 fontSize: 25, color: Colors.white)),
                   ),
@@ -127,13 +127,12 @@ class LoginPage extends StatelessWidget {
                     border: Border.all(width: 1, color: Colors.red.shade900),
                     borderRadius: BorderRadius.circular(20)),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.phone,
-                      color: Colors.red.shade900,
-                    ),
-                    SizedBox(width: 80.w,),
+                    // Icon(
+                    //   Icons.phone,
+                    //   color: Colors.red.shade900,
+                    // ),
                     Text('Login with Phone',
                         style: TextStyle(
                             fontSize: 25, color: Colors.red.shade900)),
@@ -147,7 +146,7 @@ class LoginPage extends StatelessWidget {
                 onTap: () {
                   Get.offNamed('/registraiton');
                 },
-                child: Text('Register new account >',
+                child: const Text('Register new account >',
                     style: TextStyle(fontSize: 18, color: Colors.green)),
               ),
             ),
