@@ -13,23 +13,27 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('images/icons/$iconData');
-    return Card(
-      elevation: 1,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            'images/$iconData',width: 80.w,height: 80.h,
-          ),
-          SizedBox(height: 5.w),
-          Text(
-            text,
-            style:  TextStyle(fontSize: 18.sp),
-          )
-        ],
+    return GestureDetector(
+      onTap: () {
+        
+      },
+      child: Card(
+        elevation: 1,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'images/$iconData',width: 50.w,height: 50.h,
+            ),
+            SizedBox(height: 5.w),
+            Text(
+              text,
+              style:  TextStyle(fontSize: 20.sp),
+            )
+          ],
+        ),
       ),
     );
   }

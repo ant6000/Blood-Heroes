@@ -1,10 +1,15 @@
+import 'package:blood_fighters/authenticaiton_feature/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class OtpPage extends StatelessWidget {
-  const OtpPage({super.key});
+  OtpPage({super.key});
+  final formKey = GlobalKey<FormState>();
+  final authController = Get.put(AuthController());
 
+  var otp;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,128 +34,20 @@ class OtpPage extends StatelessWidget {
               Text('We have sent you the PIN at 01589442121',
                   style: TextStyle(fontSize: 15.sp)),
               SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 60.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: TextField(
-                        decoration: const InputDecoration.collapsed(
-                          hintText: '0',
-                        ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 60.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: TextField(
-                        decoration: const InputDecoration.collapsed(
-                          hintText: '0',
-                        ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 60.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: TextField(
-                        decoration: const InputDecoration.collapsed(
-                          hintText: '0',
-                        ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 60.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: TextField(
-                        decoration: const InputDecoration.collapsed(
-                          hintText: '0',
-                        ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              OtpTextField(
+                mainAxisAlignment: MainAxisAlignment.center,
+                numberOfFields: 6,
+                fillColor: Colors.black.withOpacity(0.1),
+                filled: true,
+                onCodeChanged: (value) {
+                  otp = value;
+                },
+                // onSubmit: (value) {
+                //   otp = value;
+                //   authController.signInWithCode(otp);
+                // },
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
               Row(
                 children: [
                   Text('Dindn\'t receive SMS?',
@@ -160,16 +57,21 @@ class OtpPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20.h),
-              Container(
-                height: 60.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.red.shade900,
-                ),
-                child: Center(
-                  child: Text('VERIFY',
-                      style: TextStyle(fontSize: 25.sp, color: Colors.white)),
+              GestureDetector(
+                onTap: () {
+                  authController.signInWithCode(otp);
+                },
+                child: Container(
+                  height: 60.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.red.shade900,
+                  ),
+                  child: Center(
+                    child: Text('VERIFY',
+                        style: TextStyle(fontSize: 25.sp, color: Colors.white)),
+                  ),
                 ),
               ),
             ],

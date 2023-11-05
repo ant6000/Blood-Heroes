@@ -9,13 +9,15 @@ import 'firebase_options.dart';
 import 'authenticaiton_feature/view/screens/login_page.dart';
 import 'authenticaiton_feature/view/screens/registration_page.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ScreenUtilInit(
+    designSize: const Size(360, 800),
+    builder: (context, child) => const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,13 +35,13 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
               useMaterial3: true,
             ),
-            initialRoute: '/homePage',
+            initialRoute: '/login',
             getPages: [
               GetPage(name: '/login', page: () => LoginPage()),
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
-              GetPage(name: '/phoneNumber', page: () => const PhoneNumberPage()),
-              GetPage(name: '/otp', page: () => const OtpPage()),
-              GetPage(name: '/homePage', page: () =>  HomePage()),
+              GetPage(name: '/phoneNumber', page: () =>  PhoneNumberPage()),
+              GetPage(name: '/otp', page: () =>  OtpPage()),
+              GetPage(name: '/homePage', page: () => HomePage()),
             ],
           );
         });

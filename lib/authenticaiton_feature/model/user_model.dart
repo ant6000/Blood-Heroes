@@ -17,7 +17,7 @@ class UserModel {
       this.imageUrl});
 
   factory UserModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+      Map<String, dynamic> snapshot) {
     return UserModel(
         name: snapshot['name'],
         phone: snapshot['phone'],
