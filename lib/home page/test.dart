@@ -1,4 +1,4 @@
-import 'package:blood_fighters/authenticaiton_feature/controller/auth_controller.dart';
+import 'package:blood_fighters/authenticaiton%20feature/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class MyWidget extends StatelessWidget {
         ),
         Text(
           controller.userModel.value?.email ?? 'xx@example.com',
-          style: TextStyle(fontSize: 15, color: Colors.white),
+          style: const TextStyle(fontSize: 15, color: Colors.white),
         ),
       ],
     ));

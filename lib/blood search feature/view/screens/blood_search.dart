@@ -5,6 +5,12 @@ class BloodSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Blood Search'),
+        centerTitle: true,
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 }
