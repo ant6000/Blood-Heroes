@@ -10,9 +10,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'authenticaiton feature/view/screens/otp_page.dart';
 import 'authenticaiton feature/view/screens/phone_number_page.dart';
-import 'blood request feature/view/screens/blood_request.dart';
+import 'blood request feature/view/screens/blood_request_page.dart';
 import 'authenticaiton feature/view/screens/registration_page.dart';
 import 'home page/home_page.dart';
+import 'home page/test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,13 +43,13 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/login',
             getPages: [
-              GetPage(name: '/login', page: () => LoginPage()),
+              GetPage(name: '/login', page: () => BloodSearchPage()),
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
               GetPage(name: '/phoneNumber', page: () =>  PhoneNumberPage()),
               GetPage(name: '/otp', page: () =>  OtpPage()),
               GetPage(name: '/homePage', page: () => HomePage()),
               GetPage(name: '/bloodRequest', page: () => BloodRequestPage()),
-              GetPage(name: '/bloodSearch', page: () => const BloodSearchPage()),
+              GetPage(name: '/bloodSearch', page: () =>  BloodSearchPage()),
               GetPage(name: '/bloodBank', page: () => const BloodBankPage()),
               GetPage(name: '/ambulance', page: () => const AmbulanceSearchPage()),
               GetPage(name: '/hospitals', page: () => const HospitalSearchPage()),
