@@ -7,6 +7,7 @@ import 'feature_card.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final authController = Get.find<AuthController>();
+  bool darkMode = false;
   final List featureList = [
     'Blood Search',
     'Blood Request',
@@ -92,6 +93,14 @@ class HomePage extends StatelessWidget {
                 leading: const Icon(Icons.settings),
                 onTap: () {},
               ),
+              ListTile(
+                  title: const Text('Dark Theme'),
+                  leading: const Icon(Icons.dark_mode),
+                  trailing: Switch(
+                    value: darkMode,
+                    onChanged: (value) {
+                    },
+                  )),
               ListTile(
                 title: Text(
                   'Logout',

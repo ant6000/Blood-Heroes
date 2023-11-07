@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/login',
             getPages: [
-              GetPage(name: '/login', page: () => BloodSearchPage()),
+              GetPage(name: '/login', page: () => LoginPage()),
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
               GetPage(name: '/phoneNumber', page: () =>  PhoneNumberPage()),
               GetPage(name: '/otp', page: () =>  OtpPage()),

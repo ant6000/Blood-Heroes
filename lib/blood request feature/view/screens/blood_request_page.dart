@@ -210,7 +210,7 @@ class BloodRequestPage extends StatelessWidget {
                     color: Colors.red.shade900,
                     borderRadius: BorderRadius.circular(20)),
                 child: const Center(
-                  child: Text('Register',
+                  child: Text('Request for Blood',
                       style: TextStyle(fontSize: 25, color: Colors.white)),
                 ),
               ),
