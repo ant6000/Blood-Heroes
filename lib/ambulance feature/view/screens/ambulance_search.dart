@@ -7,9 +7,12 @@ class AmbulanceSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ambulance Search'),
+        title:  const Text('Ambulance Search',style: TextStyle(color: Colors.white),),
         centerTitle: true,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red.shade900,
+      ),
+      body: Center(
+        child: Text('Comming Soon',style: TextStyle(fontSize: 40,color: Colors.red.shade900)),
       ),
     );
   }

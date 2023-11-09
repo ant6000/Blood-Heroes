@@ -1,10 +1,10 @@
 import 'package:blood_fighters/ambulance%20feature/view/screens/ambulance_search.dart';
-import 'package:blood_fighters/blood%20banks%20feature/view/screens/blood_bank.dart';
-import 'package:blood_fighters/hospitals%20feature/view/screens/hospitals_lists.dart';
+import 'package:blood_fighters/blood%20banks%20feature/view/screens/blood_bank_page.dart';
+import 'package:blood_fighters/hospitals%20feature/view/screens/hospitals_lists_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'authenticaiton feature/view/screens/login_page.dart';
-import 'blood search feature/view/screens/blood_search.dart';
+import 'blood search feature/view/screens/blood_search_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';

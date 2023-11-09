@@ -164,13 +164,11 @@ class BloodRequestPage extends StatelessWidget {
                   DropdownMenuItem<String>(value: 'O-', child: Text('O-')),
                   DropdownMenuItem<String>(value: 'AB+', child: Text('AB+')),
                   DropdownMenuItem<String>(value: 'AB-', child: Text('AB-')),
-                  DropdownMenuItem<String>(
-                      value: 'Not Sure', child: Text('Not Sure')),
                 ],
               ),
               SizedBox(height: 10.h),
               TextFormField(
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.number,
                   maxLines: 1,
                   decoration: InputDecoration(
                       label: const Text('Blood Quantity'),
@@ -180,7 +178,7 @@ class BloodRequestPage extends StatelessWidget {
                     if (value!.isEmpty ||
                         !RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
                             .hasMatch(value)) {
-                      return 'Enter a valid email address';
+                      return 'Max blood quantity limit 10';
                     } else {
                       return null;
                     }

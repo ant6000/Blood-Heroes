@@ -44,6 +44,7 @@ class RegistrationPage extends StatelessWidget {
               TextFormField(
                 controller: nameController,
                 keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.abc),
                     label: const Text('Enter your full name'),
@@ -62,6 +63,7 @@ class RegistrationPage extends StatelessWidget {
               TextFormField(
                 controller: locationController,
                 keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.pin_drop),
                     label: const Text('Enter your location'),
@@ -136,7 +138,7 @@ class RegistrationPage extends StatelessWidget {
                         if (value!.isEmpty ||
                             !RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{8,}$')
                                 .hasMatch(value)) {
-                          return 'Password must meet the requirements';
+                          return 'Password must meet the requirements(number,symbol,capital letter)';
                         } else {
                           return null;
                         }
@@ -215,8 +217,8 @@ class RegistrationPage extends StatelessWidget {
                     authController.registration(
                         emailController.text,
                         passwordController.text,
-                        '8801${nameController.text}',
-                        phoneController.text,
+                        nameController.text,
+                        '8801${phoneController.text}',
                         locationController.text,
                         selectedBloodGroup!);
                   }

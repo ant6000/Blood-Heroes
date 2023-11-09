@@ -37,7 +37,7 @@ class AuthController extends GetxController {
       isLoading(true);
       await AuthRepo.signUp(email, password, name, phone, address, bloodGroup);
       Fluttertoast.showToast(msg: 'Account Created Successfully');
-      Get.offNamed('/homePage');
+      Get.offNamed('/homePage'); 
     } catch (e) {
       Get.snackbar('Registration Error', e.toString(),
           snackPosition: SnackPosition.BOTTOM);

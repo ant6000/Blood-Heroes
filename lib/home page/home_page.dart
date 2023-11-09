@@ -12,12 +12,12 @@ class HomePage extends StatelessWidget {
     'Blood Search',
     'Blood Request',
     'Blood Banks',
-    'Ambulance',
     'Hospitals',
     'Doctors',
     'Nurse',
     'Emergency',
-    'Blog',
+    'Ambulance',
+    'Helth Info',
     'About',
   ];
 
@@ -146,19 +146,19 @@ class HomePage extends StatelessWidget {
       case 2:
         return '/bloodBank';
       case 3:
-        return '/ambulance';
-      case 4:
         return '/hospitals';
+      case 4:
+        return '/doctors';
       case 5:
-        return '/bloodSearch';
+        return '/nurse';
       case 6:
-        return '/bloodSearch';
+        return '/emergency';
       case 7:
-        return '/bloodSearch';
+        return '/ambulance';
       case 8:
-        return '/bloodSearch';
+        return '/healthinfo';
       case 9:
-        return '/bloodSearch';
+        return '/about';
     }
   }
 }

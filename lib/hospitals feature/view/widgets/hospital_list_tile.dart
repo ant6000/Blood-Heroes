@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class UserCard extends StatelessWidget {
+class HospitalListTile extends StatelessWidget {
   final String name;
   final String location;
   final String number;
   final String bloodGroup;
-  const UserCard(
+  const HospitalListTile(
       {required this.name,
       required this.location,
       required this.bloodGroup,
@@ -23,9 +23,10 @@ class UserCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const CircleAvatar(
-              radius: 35,
-              backgroundColor: Colors.blue,
+            Container(
+              height: 60.h,
+              width: 70.w,
+              //color: Colors.black,
               child: Icon(
                 Icons.person,
                 size: 50,
@@ -33,39 +34,24 @@ class UserCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 200,
+              width: 220,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: TextStyle(fontSize: 20.sp)),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   Text('Location: $location',
+                      style: TextStyle(fontSize: 15.sp)),
+                  Text('Type: Medical college & hospital',
                       style: TextStyle(fontSize: 15.sp)),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.red.shade900,
-                    child: Text(bloodGroup,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white)),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.call,
-                        color: Colors.blue.shade900,
-                      ))
-                ],
-              ),
-            )
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.call,
+                  color: Colors.blue.shade900,
+                ))
           ],
         ),
       ),
