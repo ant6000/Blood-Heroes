@@ -23,11 +23,11 @@ class HospitalListTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
+            SizedBox(
               height: 60.h,
               width: 70.w,
               //color: Colors.black,
-              child: Icon(
+              child: const Icon(
                 Icons.person,
                 size: 50,
                 color: Colors.white,

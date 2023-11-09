@@ -120,21 +120,21 @@ class BloodRequestPage extends StatelessWidget {
                           bloodRequestController.blood.value = value;
                         },
                       ),
-                      Text('Blood'),
+                      const Text('Blood'),
                       Checkbox(
                         value: bloodRequestController.plasma.value,
                         onChanged: (value) {
                           bloodRequestController.plasma.value = value;
                         },
                       ),
-                      Text('Plasma'),
+                      const Text('Plasma'),
                       Checkbox(
                         value: bloodRequestController.platelets.value,
                         onChanged: (value) {
                           bloodRequestController.platelets.value = value;
                         },
                       ),
-                      Text('platelets'),
+                      const Text('platelets'),
                     ],
                   )),
               SizedBox(height: 10.h),

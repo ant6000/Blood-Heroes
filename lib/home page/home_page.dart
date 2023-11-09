@@ -20,6 +20,12 @@ class HomePage extends StatelessWidget {
     'Helth Info',
     'About',
   ];
+  List<String> notifications = [
+    'Notification 1',
+    'Notification 2',
+    'Notification 3   Notification 3 Notification 3',
+    // Add more notifications as needed
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +39,21 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           SizedBox(width: 10.w),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications,
-                color: Colors.white,
-              ))
+          PopupMenuButton<String>(
+            onSelected: (String value) {},
+            itemBuilder: (BuildContext context) {
+              return notifications.map((String notification) {
+                return PopupMenuItem<String>(
+                  value: notification,
+                  child: Text(notification),
+                );
+              }).toList();
+            },
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
       drawer: SafeArea(
@@ -81,16 +96,21 @@ class HomePage extends StatelessWidget {
               ListTile(
                 title: const Text('My Profile'),
                 leading: const Icon(Icons.person),
-                onTap: () {},
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                onTap: () {
+                  Get.toNamed('/profile');
+                },
               ),
               ListTile(
                 title: const Text('Donation Histoy'),
                 leading: const Icon(Icons.local_hospital),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 onTap: () {},
               ),
               ListTile(
                 title: const Text('Settings'),
                 leading: const Icon(Icons.settings),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 onTap: () {},
               ),
               ListTile(
@@ -98,8 +118,7 @@ class HomePage extends StatelessWidget {
                   leading: const Icon(Icons.dark_mode),
                   trailing: Switch(
                     value: darkMode,
-                    onChanged: (value) {
-                    },
+                    onChanged: (value) {},
                   )),
               ListTile(
                 title: Text(

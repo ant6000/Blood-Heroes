@@ -13,7 +13,7 @@ import 'authenticaiton feature/view/screens/phone_number_page.dart';
 import 'blood request feature/view/screens/blood_request_page.dart';
 import 'authenticaiton feature/view/screens/registration_page.dart';
 import 'home page/home_page.dart';
-import 'home page/test.dart';
+import 'profile feature/view/screens/profile_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/bloodBank', page: () => const BloodBankPage()),
               GetPage(name: '/ambulance', page: () => const AmbulanceSearchPage()),
               GetPage(name: '/hospitals', page: () => const HospitalSearchPage()),
+              GetPage(name: '/profile', page: () =>  ProfilePage()),
             ],
           );
         });

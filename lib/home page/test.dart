@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatefulWidget {
-  MyWidget({super.key});
+  const MyWidget({super.key});
 
   @override
   State<MyWidget> createState() => _MyWidgetState();
@@ -18,7 +18,7 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appbar'),
+        title: const Text('Appbar'),
         centerTitle: true,
       ),
       body: Container(
@@ -29,11 +29,11 @@ class _MyWidgetState extends State<MyWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'xx',
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
-              Text(
+              const Text(
                 'xx@example.com',
                 style: TextStyle(fontSize: 15, color: Colors.black),
               ),
@@ -46,7 +46,7 @@ class _MyWidgetState extends State<MyWidget> {
                   selectedGender = value;
                   });
                 },
-                child: Text('Male'),
+                child: const Text('Male'),
               ),
               RadioMenuButton(
                 value: 'Gender',
@@ -57,7 +57,7 @@ class _MyWidgetState extends State<MyWidget> {
                   selectedGender = value;
                   });
                 },
-                child: Text('Female'),
+                child: const Text('Female'),
               ),
               Checkbox(
                 value: selected,
@@ -80,7 +80,7 @@ class _MyWidgetState extends State<MyWidget> {
                       });
                     },
                   ),
-                  Text('Male'),
+                  const Text('Male'),
                   Radio<String>(
                     value: 'Female',
                     groupValue: selectedGender,
@@ -90,7 +90,7 @@ class _MyWidgetState extends State<MyWidget> {
                       });
                     },
                   ),
-                  Text('Female'),
+                  const Text('Female'),
                 ],
               ),
             ],
