@@ -1,4 +1,5 @@
 import 'package:blood_fighters/authenticaiton%20feature/model/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,11 +7,12 @@ import 'package:get/get.dart';
 import '../remote repository/auth_repo.dart';
 
 class AuthController extends GetxController {
+
   RxBool isLoading = false.obs;
   RxBool passwordShow = true.obs;
   RxBool isChecked = false.obs;
-  Rx<UserModel?> userModel = Rx<UserModel?>(null);
   var verificationId = ''.obs;
+  Rx<UserModel?> userModel = Rx<UserModel?>(null);
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -19,7 +21,7 @@ class AuthController extends GetxController {
       isLoading(true);
       await AuthRepo.signIn(email, password);
       showUserInfo(email);
-      Get.offNamed('/homePage');
+      Get.toNamed('/homePage');
     } catch (e) {
       Get.snackbar(
         'Log-In Error',
@@ -37,7 +39,7 @@ class AuthController extends GetxController {
       isLoading(true);
       await AuthRepo.signUp(email, password, name, phone, address, bloodGroup);
       Fluttertoast.showToast(msg: 'Account Created Successfully');
-      Get.offNamed('/homePage'); 
+      Get.offNamed('/homePage');
     } catch (e) {
       Get.snackbar('Registration Error', e.toString(),
           snackPosition: SnackPosition.BOTTOM);
@@ -66,6 +68,17 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  void toggleDonationStatus(String name, bool currentStatus) async {
+    try {
+      await AuthRepo.changeDonationstatus(name, currentStatus);
+      userModel.update((val) {
+        val!.donationStatus = currentStatus;
+      });
+    } catch (e) {
+      print('Error updating donation status: $e');
     }
   }
 

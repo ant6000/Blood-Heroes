@@ -33,6 +33,13 @@ class AuthRepo {
         .catchError((e) => debugPrint(e.toString()));
   }
 
+  static Future<void> changeDonationstatus(String name, bool newStatus) async {
+    await _database
+        .collection(collectionUser)
+        .doc(name)
+        .update({'donationStatus': newStatus});
+  }
+
   static Future<void> signIn(String email, String password) async {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
   }
@@ -89,5 +96,4 @@ class AuthRepo {
       return null;
     }
   }
-
 }

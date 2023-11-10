@@ -6,6 +6,7 @@ import 'feature_card.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
+
   final authController = Get.find<AuthController>();
   bool darkMode = false;
   final List featureList = [
@@ -21,10 +22,9 @@ class HomePage extends StatelessWidget {
     'About',
   ];
   List<String> notifications = [
-    'Notification 1',
-    'Notification 2',
-    'Notification 3   Notification 3 Notification 3',
-    // Add more notifications as needed
+    'Antor chakraborty need emerjency need 1 bag Ab+ blood',
+    'Tasnim hossain need emerjency need 3 bag Ab+ blood2',
+    'Notification 3',
   ];
 
   @override
@@ -64,32 +64,34 @@ class HomePage extends StatelessWidget {
               DrawerHeader(
                   decoration: BoxDecoration(color: Colors.red.shade900),
                   child: Obx(() {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    return Row(
                       children: [
-                        const Expanded(
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.yellow,
-                            child: Icon(Icons.person),
+                        const CircleAvatar(
+                          radius: 0,
+                          backgroundColor: Colors.yellow,
+                          child: Icon(Icons.person),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  authController.userModel.value?.email ?? 'Xxxx',
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                                Text(
+                                  authController.userModel.value?.name ??
+                                      'xxxx@gmail.com',
+                                  style: const TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              authController.userModel.value?.email ?? 'Xxxx',
-                              style: const TextStyle(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Text(
-                              authController.userModel.value?.name ??
-                                  'xxxx@gmail.com',
-                              style: const TextStyle(
-                                  fontSize: 15, color: Colors.white),
-                            ),
-                          ],
-                        )
                       ],
                     );
                   })),
