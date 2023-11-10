@@ -36,10 +36,12 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (_, child) {
           return GetMaterialApp(
-            title: 'Blood Fighters',
+            title: 'Blood Fighter',
             debugShowCheckedModeBanner: false,
+            darkTheme: ThemeData.dark(),
+            themeMode: ThemeMode.system,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+              primaryColor: Colors.red.shade900,
               useMaterial3: true,
             ),
             initialRoute: '/login',

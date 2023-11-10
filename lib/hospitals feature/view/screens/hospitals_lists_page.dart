@@ -36,10 +36,14 @@ class HospitalSearchPage extends StatelessWidget {
                         contentPadding: const EdgeInsets.only(top: 5),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                                width: 1, color: Colors.yellow.shade900),
+                                width: 1, 
+                               color: Theme.of(context).primaryColor,),
                             borderRadius: BorderRadius.circular(20)),
                         prefixIcon: const Icon(Icons.local_hospital),
-                        hintText: 'Enter hospital name or location'),
+                        hintText: 'Enter hospital name or location',
+                        hintStyle: TextStyle(color: Theme.of(context).hintColor,
+    ),),
+                        
                   ),
                 ),
               ),

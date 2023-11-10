@@ -22,7 +22,7 @@ class FeatureCard extends StatelessWidget {
       },
       child: Card(
         elevation: 1,
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,7 +35,8 @@ class FeatureCard extends StatelessWidget {
             SizedBox(height: 5.w),
             Text(
               text,
-              style: TextStyle(fontSize: 20.sp),
+              style: TextStyle(fontSize: 20.sp,
+              color: Theme.of(context).textTheme.bodyLarge?.color,),
             )
           ],
         ),
