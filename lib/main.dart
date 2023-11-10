@@ -46,15 +46,24 @@ class MyApp extends StatelessWidget {
             getPages: [
               GetPage(name: '/login', page: () => LoginPage()),
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
-              GetPage(name: '/phoneNumber', page: () =>  PhoneNumberPage()),
-              GetPage(name: '/otp', page: () =>  OtpPage()),
+              GetPage(name: '/phoneNumber', page: () => PhoneNumberPage()),
+              GetPage(name: '/otp', page: () => OtpPage()),
               GetPage(name: '/homePage', page: () => HomePage()),
+              GetPage(name: '/profile', page: () => ProfilePage()),
+              GetPage(name: '/bloodSearch', page: () => BloodSearchPage()),
               GetPage(name: '/bloodRequest', page: () => BloodRequestPage()),
-              GetPage(name: '/bloodSearch', page: () =>  BloodSearchPage()),
-              GetPage(name: '/bloodBank', page: () => const BloodBankPage()),
-              GetPage(name: '/ambulance', page: () => const AmbulanceSearchPage()),
-              GetPage(name: '/hospitals', page: () => const HospitalSearchPage()),
-              GetPage(name: '/profile',   page: () =>  ProfilePage()),
+              GetPage(name: '/bloodBank', page: () => BloodBankPage()),
+              GetPage(name: '/hospitals', page: () => HospitalSearchPage()),
+              GetPage(
+                  name: '/doctors', page: () => const AmbulanceSearchPage()),
+              GetPage(name: '/nurse', page: () => const AmbulanceSearchPage()),
+              GetPage(
+                  name: '/emergency', page: () => const AmbulanceSearchPage()),
+              GetPage(
+                  name: '/ambulance', page: () => const AmbulanceSearchPage()),
+              GetPage(
+                  name: '/healthinfo', page: () => const AmbulanceSearchPage()),
+              GetPage(name: '/about', page: () => const AmbulanceSearchPage()),
             ],
           );
         });

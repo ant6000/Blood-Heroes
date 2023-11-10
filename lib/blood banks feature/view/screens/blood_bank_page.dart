@@ -1,11 +1,15 @@
+import 'package:blood_fighters/blood%20banks%20feature/controller/blood_bank_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/blood_bank_tile.dart';
 
 class BloodBankPage extends StatelessWidget {
-  const BloodBankPage({super.key});
+  BloodBankPage({super.key});
+  final controller = Get.put(BloodBankController());
 
   @override
   Widget build(BuildContext context) {
+    controller.showBloodBankList();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -42,17 +46,18 @@ class BloodBankPage extends StatelessWidget {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 20,
-              (context, index) {
-            return const BloodBankTile(
-              name: 'Red Life',
-              location: 'Sahmoli 12, Dhaka',
-              number: '12356478',
-
-            );
-          }))
+          Obx(() => 
+             SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: controller.bloodBankList.length,
+                    (context, index) {
+              return BloodBankTile(
+                name: controller.bloodBankList[index]?.name.toString()?? '',
+                location: controller.bloodBankList[index]?.location.toString()?? '',
+                number: controller.bloodBankList[index]?.phone.toString()?? '',
+              );
+            })),
+          )
         ],
       ),
     );

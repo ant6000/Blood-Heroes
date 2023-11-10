@@ -1,11 +1,14 @@
+import 'package:blood_fighters/hospitals%20feature/controller/hospital_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/hospital_list_tile.dart';
 
 class HospitalSearchPage extends StatelessWidget {
-  const HospitalSearchPage({super.key});
-
+  HospitalSearchPage({super.key});
+  final controller = Get.put(HospitalController());
   @override
   Widget build(BuildContext context) {
+    controller.showHospitalList();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -42,18 +45,19 @@ class HospitalSearchPage extends StatelessWidget {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 20,
-              (context, index) {
-            return const HospitalListTile(
-              name: 'Popular Hospital Dhanmodni',
-              location: 'Dhanmoni 02, Dhaka',
-              number: '12356478',
-              bloodGroup: "Dygonstic",
-
-            );
-          }))
+          Obx(() => 
+             SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: controller.hospitalList.length, (context, index) {
+              return HospitalListTile(
+                name: controller.hospitalList[index]?.name ?? '',
+                location: controller.hospitalList[index]?.location ?? '',
+                number: controller.hospitalList[index]?.phone ?? '',
+                type: controller.hospitalList[index]?.type ?? '',
+                imageUrl: controller.hospitalList[index]?.imageUrl ?? '',
+              );
+            })),
+          )
         ],
       ),
     );

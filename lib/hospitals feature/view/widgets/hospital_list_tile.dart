@@ -5,12 +5,14 @@ class HospitalListTile extends StatelessWidget {
   final String name;
   final String location;
   final String number;
-  final String bloodGroup;
+  final String type;
+  final String imageUrl;
   const HospitalListTile(
       {required this.name,
       required this.location,
-      required this.bloodGroup,
+      required this.type,
       required this.number,
+      required this.imageUrl,
       super.key});
 
   @override

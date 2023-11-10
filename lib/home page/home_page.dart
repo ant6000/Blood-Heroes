@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
     'About',
   ];
   List<String> notifications = [
-    'Antor chakraborty need emerjency need 1 bag Ab+ blood',
+    'Antor chakraborty need emerjency need 1 bag Ab+ blood Tasnim hossain need emerjency need 3 bag Ab+ blood2',
     'Tasnim hossain need emerjency need 3 bag Ab+ blood2',
     'Notification 3',
   ];
@@ -67,10 +67,11 @@ class HomePage extends StatelessWidget {
                     return Row(
                       children: [
                         const CircleAvatar(
-                          radius: 0,
+                          radius: 30,
                           backgroundColor: Colors.yellow,
                           child: Icon(Icons.person),
                         ),
+                        SizedBox(width: 5.w),
                         Expanded(
                           child: Center(
                             child: Column(
@@ -78,15 +79,24 @@ class HomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  authController.userModel.value?.email ?? 'Xxxx',
-                                  style: const TextStyle(
-                                      fontSize: 20, color: Colors.white),
+                                  authController.userModel.value?.name ?? 'Guest',
+                                  style:  TextStyle(
+                                      fontSize: 20.sp, color: Colors.white),
                                 ),
                                 Text(
-                                  authController.userModel.value?.name ??
-                                      'xxxx@gmail.com',
-                                  style: const TextStyle(
-                                      fontSize: 15, color: Colors.white),
+                                  authController.userModel.value?.email ??
+                                      'guest@email.com',
+                                  style:  TextStyle(
+                                      fontSize: 15.sp, color: Colors.white),
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Last donation: ',style: TextStyle(fontSize: 15.sp,color: Colors.white ),),
+                                    Text( '--/--/--',
+                                      style:  TextStyle(
+                                          fontSize: 15.sp, color: Colors.white),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -102,12 +112,6 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Get.toNamed('/profile');
                 },
-              ),
-              ListTile(
-                title: const Text('Donation Histoy'),
-                leading: const Icon(Icons.local_hospital),
-                trailing: const Icon(Icons.arrow_forward_ios_rounded),
-                onTap: () {},
               ),
               ListTile(
                 title: const Text('Settings'),

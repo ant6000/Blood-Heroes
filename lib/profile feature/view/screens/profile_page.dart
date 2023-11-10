@@ -27,14 +27,14 @@ class ProfilePage extends StatelessWidget {
             ),
             Center(
                 child: Text(controller.userModel.value?.name ?? 'Guest',
-                    style: TextStyle(fontSize: 30.sp))),
+                    style: TextStyle(fontSize: 25.sp))),
             Center(
                 child: Text(controller.userModel.value?.email ?? 'Guest',
-                    style: TextStyle(fontSize: 25.sp))),
+                    style: TextStyle(fontSize: 20.sp))),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Donation status ', style: TextStyle(fontSize: 20.sp)),
+                Text('Donation status: ', style: TextStyle(fontSize: 15.sp)),
                 Obx(
                   () => Switch(
                     activeColor: Colors.blue.shade900,
@@ -58,6 +58,45 @@ class ProfilePage extends StatelessWidget {
                     'Edit Profile',
                     style: TextStyle(color: Colors.white),
                   )),
+            ),
+            SizedBox(height: 10.h),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade900,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Center(child: Text('Donation History',style: TextStyle(fontSize: 40,color: Colors.white))),
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.red.shade900,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Center(child: Text('Request History',style: TextStyle(fontSize: 40,color: Colors.white))),
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade900,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Center(child: Text('Notifications History',style: TextStyle(fontSize: 30,color: Colors.white))),
+              ),
             ),
           ],
         ));
