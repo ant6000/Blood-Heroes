@@ -46,18 +46,29 @@ class BloodBankPage extends StatelessWidget {
               ),
             ),
           ),
-          Obx(() => 
-             SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    childCount: controller.bloodBankList.length,
-                    (context, index) {
-              return BloodBankTile(
-                name: controller.bloodBankList[index]?.name.toString()?? '',
-                location: controller.bloodBankList[index]?.location.toString()?? '',
-                number: controller.bloodBankList[index]?.phone.toString()?? '',
-              );
-            })),
-          )
+          Obx(() {
+            return controller.isloading.value
+                ? const SliverFillRemaining(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                        childCount: controller.bloodBankList.length,
+                        (context, index) {
+                    return BloodBankTile(
+                      name: controller.bloodBankList[index]?.name.toString() ??
+                          '',
+                      location: controller.bloodBankList[index]?.location
+                              .toString() ??
+                          '',
+                      number:
+                          controller.bloodBankList[index]?.phone.toString() ??
+                              '',
+                    );
+                  }));
+          })
         ],
       ),
     );

@@ -45,19 +45,23 @@ class HospitalSearchPage extends StatelessWidget {
               ),
             ),
           ),
-          Obx(() => 
-             SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    childCount: controller.hospitalList.length, (context, index) {
-              return HospitalListTile(
-                name: controller.hospitalList[index]?.name ?? '',
-                location: controller.hospitalList[index]?.location ?? '',
-                number: controller.hospitalList[index]?.phone ?? '',
-                type: controller.hospitalList[index]?.type ?? '',
-                imageUrl: controller.hospitalList[index]?.imageUrl ?? '',
-              );
-            })),
-          )
+          Obx(() {
+            return controller.isloading.value
+                ? const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()))
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                        childCount: controller.hospitalList.length,
+                        (context, index) {
+                    return HospitalListTile(
+                      name: controller.hospitalList[index]?.name ?? '',
+                      location: controller.hospitalList[index]?.location ?? '',
+                      number: controller.hospitalList[index]?.phone ?? '',
+                      type: controller.hospitalList[index]?.type ?? '',
+                      imageUrl: controller.hospitalList[index]?.imageUrl ?? '',
+                    );
+                  }));
+          })
         ],
       ),
     );

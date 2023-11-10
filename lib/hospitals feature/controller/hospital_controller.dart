@@ -5,17 +5,20 @@ import 'package:get/get.dart';
 import '../remote repository/hospital_remote_repo.dart';
 
 class HospitalController extends GetxController {
+  RxBool isloading = false.obs;
   RxList<HospitalModel?> hospitalList = RxList<HospitalModel?>();
 
   Future<void> showHospitalList() async {
     try {
+      isloading.value = true;
       final hospital_list = await HospitalRepo.getHospitailsData();
-      print(hospital_list);
       if (hospital_list.isNotEmpty) {
         hospitalList.value = hospital_list;
       }
     } catch (e) {
       debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
     }
   }
 }
