@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HospitalListTile extends StatelessWidget {
   final String name;
@@ -14,7 +15,6 @@ class HospitalListTile extends StatelessWidget {
       required this.number,
       required this.imageUrl,
       super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,15 +22,15 @@ class HospitalListTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: Colors.green),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
               height: 60.h,
               width: 70.w,
-              //color: Colors.black,
               child: const Icon(
-                Icons.person,
+                Icons.home,
                 size: 50,
                 color: Colors.white,
               ),
@@ -48,10 +48,14 @@ class HospitalListTile extends StatelessWidget {
                 ],
               ),
             ),
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
+            InkWell(
+                onTap: () async {
+                  Uri pnumber = Uri(scheme: 'tel', path: number);
+                  await launchUrl(pnumber);
+                },
+                child: Icon(
                   Icons.call,
+                  size: 30,
                   color: Colors.blue.shade900,
                 ))
           ],

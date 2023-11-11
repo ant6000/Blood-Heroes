@@ -1,6 +1,6 @@
 {
-    "name": "blood_heroes",
-    "short_name": "blood_heroes",
+    "name": "blood_fighter",
+    "short_name": "blood_fighter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

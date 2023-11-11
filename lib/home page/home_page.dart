@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final authController = Get.find<AuthController>();
-  bool darkMode = false;
+
+  bool darkMode = Get.theme.brightness == Brightness.dark;
+  var systemBrightness = Get.theme.brightness;
   final List featureList = [
     'Blood Search',
     'Blood Request',
@@ -51,7 +53,7 @@ class HomePage extends StatelessWidget {
             },
             icon: const Icon(
               Icons.notifications,
-              color: Colors.white,
+              color: Colors.white
             ),
           ),
         ],
@@ -79,21 +81,27 @@ class HomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  authController.userModel.value?.name ?? 'Guest',
-                                  style:  TextStyle(
+                                  authController.userModel.value?.name ??
+                                      'Guest',
+                                  style: TextStyle(
                                       fontSize: 20.sp, color: Colors.white),
                                 ),
                                 Text(
                                   authController.userModel.value?.email ??
                                       'guest@email.com',
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                       fontSize: 15.sp, color: Colors.white),
                                 ),
                                 Row(
                                   children: [
-                                    Text('Last donation: ',style: TextStyle(fontSize: 15.sp,color: Colors.white ),),
-                                    Text( '--/--/--',
-                                      style:  TextStyle(
+                                    Text(
+                                      'Last donation: ',
+                                      style: TextStyle(
+                                          fontSize: 15.sp, color: Colors.white),
+                                    ),
+                                    Text(
+                                      '--/--/--',
+                                      style: TextStyle(
                                           fontSize: 15.sp, color: Colors.white),
                                     ),
                                   ],
@@ -120,12 +128,33 @@ class HomePage extends StatelessWidget {
                 onTap: () {},
               ),
               ListTile(
-                  title: const Text('Dark Theme'),
-                  leading: const Icon(Icons.dark_mode),
-                  trailing: Switch(
-                    value: darkMode,
-                    onChanged: (value) {},
-                  )),
+                title: const Text('Dark Theme'),
+                leading: const Icon(Icons.dark_mode),
+                trailing: Switch(
+                        value: darkMode,
+                        onChanged: (value) {
+                          Get.changeTheme(
+                              value ? ThemeData.dark() : ThemeData.light());
+                          darkMode = value;
+                        },
+                      )
+              ),
+              ListTile(
+                title: const Text('Data & Privecy Policy'),
+                leading: const Icon(Icons.policy),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text('Share'),
+                leading: const Icon(Icons.share),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text('Rate the app'),
+                leading: const Icon(Icons.star_border),
+                onTap: () {},
+              ),
               ListTile(
                 title: Text(
                   'Logout',

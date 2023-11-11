@@ -32,12 +32,16 @@ class BloodBankPage extends StatelessWidget {
                   height: 50,
                   child: TextField(
                     decoration: InputDecoration(
-                        fillColor: Colors.white,
+                        fillColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.black
+                                : Colors.white,
                         filled: true,
                         contentPadding: const EdgeInsets.only(top: 5),
                         border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.yellow.shade900),
+                            borderSide: const BorderSide(
+                              width: 1,
+                            ),
                             borderRadius: BorderRadius.circular(20)),
                         prefixIcon: const Icon(Icons.local_hospital),
                         hintText: 'Enter Location'),

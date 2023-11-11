@@ -45,11 +45,19 @@ class BloodSearchPage extends StatelessWidget {
                         keyboardType: TextInputType.name,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
-                            fillColor: Colors.white,
+                            fillColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.black
+                                    : Colors.white,
                             filled: true,
                             prefixIcon: const Icon(Icons.location_on),
                             hintText: 'Enter Thana, Division',
-                            errorStyle: const TextStyle(color: Colors.white),
+                            // hintStyle: TextStyle(
+                            //   color: Theme.of(context).brightness ==
+                            //           Brightness.dark
+                            //       ? Colors.white70
+                            //       : Colors.black54,
+                            // ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20))),
                         validator: (value) {
@@ -65,11 +73,13 @@ class BloodSearchPage extends StatelessWidget {
                       DropdownButtonFormField<String>(
                         borderRadius: BorderRadius.circular(20),
                         decoration: InputDecoration(
-                            fillColor: Colors.white,
+                            fillColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.black
+                                    : Colors.white,
                             filled: true,
                             prefixIcon: Icon(
                               Icons.water_drop,
-                              color: Colors.red.shade900,
                             ),
                             hintText: 'Select your blood group',
                             errorStyle: const TextStyle(color: Colors.white),
@@ -106,7 +116,6 @@ class BloodSearchPage extends StatelessWidget {
                               value: 'ALL', child: Text('ALL')),
                         ],
                       ),
-                      
                       SizedBox(height: 10.h),
                       GestureDetector(
                         onTap: () {

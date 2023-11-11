@@ -1,5 +1,4 @@
 import 'package:blood_fighters/ambulance%20feature/view/screens/ambulance_search.dart';
-import 'package:blood_fighters/authenticaiton%20feature/binding/authentication_binding.dart';
 import 'package:blood_fighters/blood%20banks%20feature/view/screens/blood_bank_page.dart';
 import 'package:blood_fighters/hospitals%20feature/view/screens/hospitals_lists_page.dart';
 import 'package:flutter/material.dart';

@@ -31,19 +31,23 @@ class HospitalSearchPage extends StatelessWidget {
                   height: 50,
                   child: TextField(
                     decoration: InputDecoration(
-                        fillColor: Colors.white,
-                        filled: true,
-                        contentPadding: const EdgeInsets.only(top: 5),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, 
-                               color: Theme.of(context).primaryColor,),
-                            borderRadius: BorderRadius.circular(20)),
-                        prefixIcon: const Icon(Icons.local_hospital),
-                        hintText: 'Enter hospital name or location',
-                        hintStyle: TextStyle(color: Theme.of(context).hintColor,
-    ),),
-                        
+                      fillColor: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : Colors.white,
+                      filled: true,
+                      contentPadding: const EdgeInsets.only(top: 5),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(20)),
+                      prefixIcon: const Icon(Icons.add_home_work_sharp),
+                      hintText: 'Enter hospital name or location',
+                      hintStyle: TextStyle(
+                        color: Theme.of(context).hintColor,
+                      ),
+                    ),
                   ),
                 ),
               ),

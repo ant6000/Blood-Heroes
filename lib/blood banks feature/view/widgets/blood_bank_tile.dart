@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BloodBankTile extends StatelessWidget {
   final String name;
@@ -42,7 +43,10 @@ class BloodBankTile extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  Uri pnumber = Uri(scheme: 'tel', path: number);
+                  await launchUrl(pnumber);
+                },
                 icon: Icon(
                   Icons.call,
                   color: Colors.blue.shade900,
