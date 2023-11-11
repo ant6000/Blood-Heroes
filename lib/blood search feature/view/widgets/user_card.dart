@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserCard extends StatelessWidget {
   final String name;
@@ -58,7 +59,10 @@ class UserCard extends StatelessWidget {
                             const TextStyle(fontSize: 20, color: Colors.white)),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        Uri url = Uri(scheme: 'tel', path: number);
+                        await launchUrl(url);
+                      },
                       icon: Icon(
                         Icons.call,
                         color: Colors.blue.shade900,

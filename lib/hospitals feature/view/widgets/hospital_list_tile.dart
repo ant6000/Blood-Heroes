@@ -30,9 +30,9 @@ class HospitalListTile extends StatelessWidget {
               height: 60.h,
               width: 70.w,
               child: const Icon(
-                Icons.home,
+                Icons.location_city_outlined,
                 size: 50,
-                color: Colors.white,
+                //color: Colors.white,
               ),
             ),
             SizedBox(
@@ -50,8 +50,8 @@ class HospitalListTile extends StatelessWidget {
             ),
             InkWell(
                 onTap: () async {
-                  Uri pnumber = Uri(scheme: 'tel', path: number);
-                  await launchUrl(pnumber);
+                  Uri url = Uri(scheme: 'tel', path: number);
+                  await launchUrl(url);
                 },
                 child: Icon(
                   Icons.call,

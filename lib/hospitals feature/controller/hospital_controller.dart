@@ -1,7 +1,6 @@
 import 'package:blood_fighters/hospitals%20feature/model/hospital_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../remote repository/hospital_remote_repo.dart';
 
@@ -23,13 +22,18 @@ class HospitalController extends GetxController {
     }
   }
 
-  // Future<void> launchDialpad(String phoneNumber) async {
+  Future<void> searchHospital(String query) async {
+    try {
+      final searchResults = await HospitalRepo.searchHospital(query);
 
-  //  Uri phoneno = Uri.parse('tel:+97798345348734');
-  //   if (await canLaunchUrl(phoneno)) {
-  //     launchDialpad(phoneNumber);
-  //   } else {
-  //     throw 'Could not launch $phoneno';
-  //   }
-  // }
+      final resultList =
+          searchResults.map((doc) => HospitalModel.fromSnapshot(doc)).toList();
+
+      if (searchResults.isNotEmpty) {
+        hospitalList.value = resultList;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

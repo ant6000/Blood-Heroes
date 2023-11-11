@@ -15,4 +15,22 @@ class BloodBankRepo {
       return [];
     }
   }
+
+  static Future <List<QueryDocumentSnapshot<Map<String, dynamic>>>> searchBloodBank(
+      String query) async {
+    final querySnapshot = await _database.collection(collection).get();
+
+    final result = querySnapshot.docs.where((doc) {
+      final String name = doc['name'].toString().toLowerCase();
+      final String location = doc['address'].toString().toLowerCase();
+      return name.contains(query.toLowerCase()) ||
+          location.contains(query.toLowerCase());
+    });
+    if (result.isNotEmpty) {
+      return result.toList();
+    } else {
+      print('Repo cant found data');
+      return [];
+    }
+  }
 }

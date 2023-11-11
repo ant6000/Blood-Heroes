@@ -78,7 +78,7 @@ class BloodSearchPage extends StatelessWidget {
                                     ? Colors.black
                                     : Colors.white,
                             filled: true,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.water_drop,
                             ),
                             hintText: 'Select your blood group',

@@ -6,6 +6,7 @@ import '../widgets/hospital_list_tile.dart';
 class HospitalSearchPage extends StatelessWidget {
   HospitalSearchPage({super.key});
   final controller = Get.put(HospitalController());
+  final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     controller.showHospitalList();
@@ -30,6 +31,7 @@ class HospitalSearchPage extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   child: TextField(
+                    controller: searchController,
                     decoration: InputDecoration(
                       fillColor: Theme.of(context).brightness == Brightness.dark
                           ? Colors.black
@@ -48,6 +50,13 @@ class HospitalSearchPage extends StatelessWidget {
                         color: Theme.of(context).hintColor,
                       ),
                     ),
+                    onChanged: (value) {
+                      if (searchController.text.length > 3) {
+                        controller.searchHospital(searchController.text);
+                      }else{
+                        controller.showHospitalList();
+                      }
+                    },
                   ),
                 ),
               ),

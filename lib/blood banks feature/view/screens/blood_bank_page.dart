@@ -6,6 +6,7 @@ import '../widgets/blood_bank_tile.dart';
 class BloodBankPage extends StatelessWidget {
   BloodBankPage({super.key});
   final controller = Get.put(BloodBankController());
+  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class BloodBankPage extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   child: TextField(
+                    controller: searchController,
                     decoration: InputDecoration(
                         fillColor:
                             Theme.of(context).brightness == Brightness.dark
@@ -45,6 +47,13 @@ class BloodBankPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         prefixIcon: const Icon(Icons.local_hospital),
                         hintText: 'Enter Location'),
+                    onChanged: (value) {
+                      if (searchController.text.length > 3) {
+                        controller.searchBloodBank(searchController.text);
+                      }else{
+                        controller.showBloodBankList();
+                      }
+                    },
                   ),
                 ),
               ),

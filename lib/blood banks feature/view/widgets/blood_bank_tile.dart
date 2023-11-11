@@ -25,10 +25,10 @@ class BloodBankTile extends StatelessWidget {
             SizedBox(
               height: 60.h,
               width: 70.w,
-              child: const Icon(
-                Icons.person,
+              child:  Icon(
+                Icons.add_home_work_sharp,
                 size: 50,
-                color: Colors.white,
+                color: Colors.red.shade900,
               ),
             ),
             SizedBox(

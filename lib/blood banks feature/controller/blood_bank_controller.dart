@@ -20,4 +20,19 @@ class BloodBankController extends GetxController {
       isloading.value = false;
     }
   }
+
+    Future<void> searchBloodBank(String query) async {
+    try {
+      final searchResults = await BloodBankRepo.searchBloodBank(query);
+
+      final resultList =
+          searchResults.map((doc) => BloodBankModel.fromSnapshot(doc)).toList();
+
+      if (searchResults.isNotEmpty) {
+        bloodBankList.value = resultList;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
