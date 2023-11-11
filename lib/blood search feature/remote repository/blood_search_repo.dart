@@ -5,15 +5,19 @@ class BloodSearchRepo {
   static final FirebaseFirestore _database = FirebaseFirestore.instance;
   static String collectionUser = 'User Data';
 
-  static Future<List<DocumentSnapshot>> getDonorList(
+  static Future<List<QueryDocumentSnapshot>> getDonorList(
       String location, String bloodGroup) async {
     final querySnapshot = await _database
         .collection(collectionUser)
-         .where('address', isEqualTo: location)
         .where('bloodgroup', isEqualTo: bloodGroup)
         .get();
-    if (querySnapshot.docs.isNotEmpty) {
-      return querySnapshot.docs;
+    final results = querySnapshot.docs.where((doc) {
+      final String address = doc['address'].toString().toLowerCase();
+      return address.contains(location.toLowerCase());
+    });
+
+    if (results.isNotEmpty) {
+      return results.toList()  ;
     } else {
       debugPrint('repo cant found data');
       return [];

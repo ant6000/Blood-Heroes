@@ -112,8 +112,6 @@ class BloodSearchPage extends StatelessWidget {
                               value: 'AB+', child: Text('AB+')),
                           DropdownMenuItem<String>(
                               value: 'AB-', child: Text('AB-')),
-                          DropdownMenuItem<String>(
-                              value: 'ALL', child: Text('ALL')),
                         ],
                       ),
                       SizedBox(height: 10.h),
