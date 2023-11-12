@@ -34,6 +34,14 @@ class BloodRequestPage extends StatelessWidget {
                     label: const Text('Enter Patient name'),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+                    return 'Enter correct name';
+                  } else {
+                    return null;
+                  }
+                },
               ),
               SizedBox(height: 10.h),
               Obx(
@@ -76,15 +84,30 @@ class BloodRequestPage extends StatelessWidget {
                     label: const Text('Enter Hospital Address'),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-zA-Z0-9, -]+$').hasMatch(value)) {
+                    return 'Enter a valid location';
+                  } else {
+                    return null;
+                  }
+                },
               ),
               SizedBox(height: 10.h),
               TextFormField(
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.phone),
-                    label: const Text('Enter Contact number'),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              ),
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.phone),
+                      label: const Text('Enter Contact number'),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^1[3456789]\d{8}$').hasMatch(value)) {
+                      return 'Enter a valid BD phone number';
+                    } else {
+                      return null;
+                    }
+                  }),
               SizedBox(height: 10.h),
               DropdownButtonFormField<String>(
                 borderRadius: BorderRadius.circular(20),
@@ -99,7 +122,7 @@ class BloodRequestPage extends StatelessWidget {
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Patient Medical condition';
+                    return 'Please select a medical conditation';
                   }
                   return null;
                 },
@@ -132,6 +155,7 @@ class BloodRequestPage extends StatelessWidget {
                         value: bloodRequestController.platelets.value,
                         onChanged: (value) {
                           bloodRequestController.platelets.value = value;
+                          formkey.currentState!.validate();
                         },
                       ),
                       const Text('platelets'),
@@ -171,13 +195,11 @@ class BloodRequestPage extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      label: const Text('Blood Quantity'),
+                      label: const Text('Blood Quantity (bag)'),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
                   validator: (value) {
-                    if (value!.isEmpty ||
-                        !RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                            .hasMatch(value)) {
+                    if (value!.isEmpty || !RegExp(r'^[1-9]$').hasMatch(value)) {
                       return 'Max blood quantity limit 10';
                     } else {
                       return null;
@@ -185,31 +207,30 @@ class BloodRequestPage extends StatelessWidget {
                   }),
               SizedBox(height: 10.h),
               TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                      label: const Text('Aditional Details'),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  validator: (value) {
-                    if (value!.isEmpty ||
-                        !RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                            .hasMatch(value)) {
-                      return 'Enter a valid email address';
-                    } else {
-                      return null;
-                    }
-                  }),
+                keyboardType: TextInputType.emailAddress,
+                maxLines: 3,
+                decoration: InputDecoration(
+                    label: const Text('Aditional Details'),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
               SizedBox(height: 10.h),
-              Container(
-                width: double.infinity,
-                height: 60.h,
-                decoration: BoxDecoration(
-                    color: Colors.red.shade900,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                  child: Text('Request for Blood',
-                      style: TextStyle(fontSize: 25, color: Colors.white)),
+              GestureDetector(
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    print('success');
+                  }
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 60.h,
+                  decoration: BoxDecoration(
+                      color: Colors.red.shade900,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: const Center(
+                    child: Text('Request for Blood',
+                        style: TextStyle(fontSize: 25, color: Colors.white)),
+                  ),
                 ),
               ),
             ],

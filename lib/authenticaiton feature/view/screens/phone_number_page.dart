@@ -28,6 +28,7 @@ class PhoneNumberPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('What is you phone number?',
                     style: TextStyle(
@@ -38,7 +39,7 @@ class PhoneNumberPage extends StatelessWidget {
                   validator: (value) {
                     if (value!.isEmpty ||
                         !RegExp(r'^1[3456789]\d{8}$').hasMatch(value)) {
-                      return 'Enter a valid Bangladeshi phone number';
+                      return 'Enter a valid phone number';
                     } else {
                       return null;
                     }
@@ -55,8 +56,10 @@ class PhoneNumberPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
+                      authController.phonNumber.value = phoneController.text;
                       authController
-                          .signinWithPhone('+880 ${phoneController.text}');
+                          .signinWithPhone('+880${phoneController.text}');
+                      Get.toNamed('/otp');
                     }
                   },
                   child: Container(

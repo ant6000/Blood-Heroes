@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class OtpPage extends StatelessWidget {
   OtpPage({super.key});
   final formKey = GlobalKey<FormState>();
-  final authController = Get.put(AuthController());
+  final controller = Get.find<AuthController>();
 
-  var otp;
+  var otp = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,47 +31,59 @@ class OtpPage extends StatelessWidget {
               Text('Verify your number',
                   style:
                       TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold)),
-              Text('We have sent you the PIN at 01589442121',
-                  style: TextStyle(fontSize: 15.sp)),
+              Text('We have sent you the PIN at +88 0${controller.phonNumber}',
+                  style: TextStyle(fontSize: 13.sp)),
               SizedBox(height: 20.h),
               OtpTextField(
                 mainAxisAlignment: MainAxisAlignment.center,
                 numberOfFields: 6,
                 fillColor: Colors.black.withOpacity(0.1),
                 filled: true,
-                onCodeChanged: (value) {
-                  otp = value;
-                },
-                // onSubmit: (value) {
+
+                // onCodeChanged: (value) {
                 //   otp = value;
-                //   authController.signInWithCode(otp);
                 // },
+                onSubmit: (value) => controller.signInWithCode(value),
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 20.h),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Dindn\'t receive SMS?',
                       style: TextStyle(fontSize: 15.sp)),
+                  SizedBox(width: 10.w),
                   Text('Resend Code',
                       style: TextStyle(fontSize: 15.sp, color: Colors.green)),
                 ],
               ),
               SizedBox(height: 20.h),
-              GestureDetector(
-                onTap: () {
-                  authController.signInWithCode(otp);
-                },
-                child: Container(
-                  height: 60.h,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.red.shade900,
-                  ),
-                  child: Center(
-                    child: Text('VERIFY',
-                        style: TextStyle(fontSize: 25.sp, color: Colors.white)),
-                  ),
+              // GestureDetector(
+              //   onTap: () {
+              //     controller.signInWithCode(otp);
+              //   },
+              //   child: Container(
+              //     height: 60.h,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(20),
+              //       color: Colors.red.shade900,
+              //     ),
+              //     child: Center(
+              //       child: Text('VERIFY',
+              //           style: TextStyle(fontSize: 25.sp, color: Colors.white)),
+              //     ),
+              //   ),
+              // ),
+              SizedBox(height: 20.h),
+              Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Obx(() {
+                    return controller.isLoading.value
+                        ? const CircularProgressIndicator()
+                        : const SizedBox();
+                  }),
                 ),
               ),
             ],

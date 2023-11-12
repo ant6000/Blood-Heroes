@@ -12,7 +12,8 @@ import 'authenticaiton feature/view/screens/otp_page.dart';
 import 'authenticaiton feature/view/screens/phone_number_page.dart';
 import 'blood request feature/view/screens/blood_request_page.dart';
 import 'authenticaiton feature/view/screens/registration_page.dart';
-import 'home page/home_page.dart';
+import 'home page/view/screens/home_page.dart';
+import 'notification feature/firebase services/firebase_notification.dart';
 import 'profile feature/view/screens/profile_page.dart';
 
 void main() async {
@@ -20,6 +21,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseNotifi().initNotifications();
   runApp(ScreenUtilInit(
     designSize: const Size(360, 800),
     builder: (context, child) => const MyApp(),

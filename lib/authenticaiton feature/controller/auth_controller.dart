@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import '../remote repository/auth_repo.dart';
 
 class AuthController extends GetxController {
-
   RxBool isLoading = false.obs;
   RxBool passwordShow = true.obs;
   RxBool isChecked = false.obs;
   var verificationId = ''.obs;
+  RxString phonNumber = ''.obs;
   Rx<UserModel?> userModel = Rx<UserModel?>(null);
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -132,12 +132,15 @@ class AuthController extends GetxController {
 
   Future<void> signInWithCode(String otp) async {
     try {
+      isLoading(true);
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId.value, smsCode: otp);
       await _auth.signInWithCredential(credential);
       Get.offNamed('/homePage');
     } catch (e) {
       debugPrint(e.toString());
+    } finally {
+      isLoading(false);
     }
   }
 }

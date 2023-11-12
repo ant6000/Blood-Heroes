@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../authenticaiton feature/controller/auth_controller.dart';
-import 'feature_card.dart';
+import '../../../authenticaiton feature/controller/auth_controller.dart';
+import '../widgets/feature_card.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -24,9 +24,11 @@ class HomePage extends StatelessWidget {
     'About',
   ];
   List<String> notifications = [
-    'Antor chakraborty need emerjency need 1 bag Ab+ blood Tasnim hossain need emerjency need 3 bag Ab+ blood2',
-    'Tasnim hossain need emerjency need 3 bag Ab+ blood2',
+    'Antor chakraborty need emerjency need 1 bag Ab+ blood',
+    'Tasnim hossain need emerjency need 3 bag O+ blood',
     'Notification 3',
+    'Notification 4',
+    'Notification 5',
   ];
 
   @override

@@ -13,7 +13,8 @@ class BloodSearchRepo {
         .get();
     final results = querySnapshot.docs.where((doc) {
       final String address = doc['address'].toString().toLowerCase();
-      return address.contains(location.toLowerCase());
+       final bool donationStatus = doc['donationStatus'] ?? false; 
+      return address.contains(location.toLowerCase()) && donationStatus;
     });
 
     if (results.isNotEmpty) {
