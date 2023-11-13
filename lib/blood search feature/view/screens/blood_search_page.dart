@@ -1,16 +1,32 @@
 import 'package:blood_fighter/blood%20search%20feature/controller/blood_serach_controller.dart';
+import 'package:blood_fighter/blood%20search%20feature/view/widgets/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../widgets/user_card.dart';
+class BloodSearchPage extends StatefulWidget {
+  const BloodSearchPage({super.key});
 
-class BloodSearchPage extends StatelessWidget {
+  @override
+  State<BloodSearchPage> createState() => _BloodSearchPageState();
+}
+
+class _BloodSearchPageState extends State<BloodSearchPage> {
   String? bloodGroup;
-  BloodSearchPage({super.key});
+
   final formKey = GlobalKey<FormState>();
+
   final locationController = TextEditingController();
+
   final searchController = Get.put(BloodSearchController());
+
+  @override
+  void dispose() {
+    locationController.dispose();
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +37,7 @@ class BloodSearchPage extends StatelessWidget {
           title:
               const Text('Search Blood', style: TextStyle(color: Colors.white)),
           centerTitle: true,
-          expandedHeight: 300,
+          expandedHeight: 300.h,
           backgroundColor: Colors.red.shade900,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -52,12 +68,13 @@ class BloodSearchPage extends StatelessWidget {
                             filled: true,
                             prefixIcon: const Icon(Icons.location_on),
                             hintText: 'Enter Thana, Division',
-                            // hintStyle: TextStyle(
-                            //   color: Theme.of(context).brightness ==
-                            //           Brightness.dark
-                            //       ? Colors.white70
-                            //       : Colors.black54,
-                            // ),
+                            errorStyle: const TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20))),
                         validator: (value) {
@@ -78,6 +95,12 @@ class BloodSearchPage extends StatelessWidget {
                                     ? Colors.black
                                     : Colors.white,
                             filled: true,
+                            hintStyle: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
                             prefixIcon: const Icon(
                               Icons.water_drop,
                             ),
@@ -144,6 +167,30 @@ class BloodSearchPage extends StatelessWidget {
             ),
           ),
         ),
+        // Obx(() {
+        //   if (searchController.isLoading.value) {
+        //     return SliverFillRemaining(child: const Center(child: CircularProgressIndicator()));
+        //   } else {
+        //     return SliverList(
+        //         delegate: SliverChildBuilderDelegate((context, index) =>
+        //             UserCard(
+        //                 name: searchController.userList[index]!.name,
+        //                 location: searchController.userList[index]!.location,
+        //                 bloodGroup:
+        //                     searchController.userList[index]!.bloodGroup,
+        //                 number: searchController.userList[index]!.number)));
+        //   }
+        // searchController.isLoading.value
+        //     ? const Center(child: CircularProgressIndicator())
+        //     : SliverList(
+        //         delegate: SliverChildBuilderDelegate((context, index) =>
+        //             UserCard(
+        //                 name: searchController.userList[index]!.name,
+        //                 location: searchController.userList[index]!.location,
+        //                 bloodGroup:
+        //                     searchController.userList[index]!.bloodGroup,
+        //                 number: searchController.userList[index]!.number)));
+        //})
         Obx(() {
           if (searchController.isLoading.value) {
             // Show a loading animation while fetching data
@@ -153,29 +200,24 @@ class BloodSearchPage extends StatelessWidget {
                     CircularProgressIndicator(), // You can use your custom loading widget
               ),
             );
+          } else if (searchController.searchComplete.value &&
+              searchController.userList.isEmpty) {
+            return const SliverFillRemaining(
+                child: Center(child: Text('No User found',style: TextStyle(color: Colors.black),)));
           } else {
-            if (searchController.userList.isEmpty) {
-              return const SliverFillRemaining(
-                child: Center(
-                  child: Text("No donors found"),
-                ),
-              );
-            } else {
-              return SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: searchController.userList.length,
-                  (context, index) {
-                    return UserCard(
-                      name: searchController.userList[index]!.name,
-                      location: searchController.userList[index]!.location,
-                      bloodGroup: searchController.userList[index]!.bloodGroup,
-                      number: searchController.userList[index]!.number,
-                    );
-                  },
-                ),
-              );
-            }
-            // Display the donor list
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: searchController.userList.length,
+                (context, index) {
+                  return UserCard(
+                    name: searchController.userList[index]!.name,
+                    location: searchController.userList[index]!.location,
+                    bloodGroup: searchController.userList[index]!.bloodGroup,
+                    number: searchController.userList[index]!.number,
+                  );
+                },
+              ),
+            );
           }
         })
       ],

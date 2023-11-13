@@ -8,9 +8,8 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final authController = Get.find<AuthController>();
+  bool isDarkMode = false;
 
-  bool darkMode = Get.theme.brightness == Brightness.dark;
-  var systemBrightness = Get.theme.brightness;
   final List featureList = [
     'Blood Search',
     'Blood Request',
@@ -41,24 +40,6 @@ class HomePage extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        actions: [
-          SizedBox(width: 10.w),
-          PopupMenuButton<String>(
-            onSelected: (String value) {},
-            itemBuilder: (BuildContext context) {
-              return notifications.map((String notification) {
-                return PopupMenuItem<String>(
-                  value: notification,
-                  child: Text(notification),
-                );
-              }).toList();
-            },
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.white
-            ),
-          ),
-        ],
       ),
       drawer: SafeArea(
         child: Drawer(
@@ -123,23 +104,32 @@ class HomePage extends StatelessWidget {
                   Get.toNamed('/profile');
                 },
               ),
-              ListTile(
-                title: const Text('Dark Theme'),
-                leading: const Icon(Icons.dark_mode),
-                trailing: Switch(
-                        value: darkMode,
-                        onChanged: (value) {
-                          Get.changeTheme(
-                              value ? ThemeData.dark() : ThemeData.light());
-                          darkMode = value;
-                        },
-                      )
+              Obx(
+                () => ListTile(
+                    title: const Text('Dark Theme'),
+                    leading: const Icon(Icons.dark_mode),
+                    trailing: Switch(
+                      value: authController.isDarkMode.value,
+                      onChanged: (value) {
+                        authController.isDarkMode.value = value;
+                        Get.changeTheme(authController.isDarkMode.value
+                            ? ThemeData.dark()
+                            : ThemeData.light());
+                      },
+                    )),
               ),
               ListTile(
                 title: const Text('Data & Privecy Policy'),
                 leading: const Icon(Icons.policy),
-                trailing: const Icon(Icons.arrow_forward_ios_rounded),
-                onTap: () {},
+                onTap: () {
+                  Get.defaultDialog(
+                      title: 'Data & Privecy Policy',
+                      actions: [
+                        TextButton(onPressed: () {}, child: Text('cancle')),
+                      ],
+                      content: Text(
+                          'We take reasonable steps to protect your personal information from unauthorized access or disclosure. However, no method of transmission over the internet or electronic storage is 100% secure.\n \n Our app may contain links to third-party websites or services. We are not responsible for the content or privacy practices of those third-party sites.\n\nPlease tailor this privacy policy to fit the specific features and data processing activities of your blood donation app. Consult with legal professionals to ensure compliance with applicable privacy laws and regulations.'));
+                },
               ),
               ListTile(
                 title: const Text('Share'),

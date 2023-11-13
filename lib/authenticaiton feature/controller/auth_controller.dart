@@ -10,6 +10,7 @@ class AuthController extends GetxController {
   RxBool isChecked = false.obs;
   var verificationId = ''.obs;
   RxString phonNumber = ''.obs;
+  RxBool isDarkMode = false.obs;
   Rx<UserModel?> userModel = Rx<UserModel?>(null);
 
   Future<void> login(String email, String password) async {

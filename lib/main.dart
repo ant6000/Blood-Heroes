@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'authenticaiton feature/view/screens/login_page.dart';
 import 'blood search feature/view/screens/blood_search_page.dart';
+import 'emergency feature/view/screens/emergency_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -47,15 +48,15 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
               GetPage(name: '/homePage', page: () => HomePage()),
               GetPage(name: '/profile', page: () => ProfilePage()),
-              GetPage(name: '/bloodSearch', page: () => BloodSearchPage()),
+              GetPage(
+                  name: '/bloodSearch', page: () => const BloodSearchPage()),
               GetPage(name: '/bloodRequest', page: () => BloodRequestPage()),
               GetPage(name: '/bloodBank', page: () => BloodBankPage()),
               GetPage(name: '/hospitals', page: () => HospitalSearchPage()),
               GetPage(
                   name: '/doctors', page: () => const AmbulanceSearchPage()),
               GetPage(name: '/nurse', page: () => const AmbulanceSearchPage()),
-              GetPage(
-                  name: '/emergency', page: () => const AmbulanceSearchPage()),
+              GetPage(name: '/emergency', page: () => const EmergencyPage()),
               GetPage(
                   name: '/ambulance', page: () => const AmbulanceSearchPage()),
               GetPage(

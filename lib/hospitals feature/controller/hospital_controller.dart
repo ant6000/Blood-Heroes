@@ -6,6 +6,7 @@ import '../remote repository/hospital_remote_repo.dart';
 
 class HospitalController extends GetxController {
   RxBool isloading = false.obs;
+  RxBool notFound = false.obs;
   RxList<HospitalModel?> hospitalList = RxList<HospitalModel?>();
 
   Future<void> showHospitalList() async {
@@ -29,7 +30,10 @@ class HospitalController extends GetxController {
       final resultList =
           searchResults.map((doc) => HospitalModel.fromSnapshot(doc)).toList();
 
-      if (searchResults.isNotEmpty) {
+      if (searchResults.isEmpty) {
+        notFound(true);
+      } else {
+        notFound(false);
         hospitalList.value = resultList;
       }
     } catch (e) {

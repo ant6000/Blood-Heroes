@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class BloodBankController extends GetxController {
   RxBool isloading = false.obs;
+  RxBool notFound = false.obs;
   RxList<BloodBankModel?> bloodBankList = RxList<BloodBankModel?>();
 
   Future<void> showBloodBankList() async {
@@ -28,7 +29,10 @@ class BloodBankController extends GetxController {
       final resultList =
           searchResults.map((doc) => BloodBankModel.fromSnapshot(doc)).toList();
 
-      if (searchResults.isNotEmpty) {
+      if (searchResults.isEmpty) {
+        notFound(true);
+      } else {
+        notFound(false);
         bloodBankList.value = resultList;
       }
     } catch (e) {

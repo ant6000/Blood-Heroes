@@ -17,10 +17,18 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h,bottom: 5.h),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.green),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.green,
+            boxShadow: const [
+              BoxShadow(
+                  blurRadius: 4,
+                  color: Colors.black38,
+                  offset: Offset(0, 4),
+                  spreadRadius: 4)
+            ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -34,7 +42,7 @@ class UserCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 200,
+              width: 200.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -63,9 +71,9 @@ class UserCard extends StatelessWidget {
                         Uri url = Uri(scheme: 'tel', path: number);
                         await launchUrl(url);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.call,
-                        color: Colors.blue.shade900,
+                        color: Colors.white,
                       ))
                 ],
               ),

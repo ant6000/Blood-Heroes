@@ -8,6 +8,7 @@ class BloodSearchController extends GetxController {
   RxList<BloodSearchModel?> userList = RxList<BloodSearchModel?>();
   RxBool isLoading = RxBool(false);
   RxBool isloading = false.obs;
+  RxBool searchComplete = false.obs;
 
   Future<void> showDonorList(String location, String bloodGroup) async {
     try {
@@ -20,6 +21,8 @@ class BloodSearchController extends GetxController {
           .toList();
       userList.clear();
       userList.addAll(donorList);
+      searchComplete(true);
+      
     } catch (e) {
       debugPrint(e.toString());
     } finally {

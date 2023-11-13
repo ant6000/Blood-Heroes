@@ -44,16 +44,17 @@ class HospitalSearchPage extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                           ),
                           borderRadius: BorderRadius.circular(20)),
-                      prefixIcon: const Icon(Icons.add_home_work_sharp),
+                      prefixIcon: const Icon(Icons.location_pin),
                       hintText: 'Enter hospital name or location',
                       hintStyle: TextStyle(
                         color: Theme.of(context).hintColor,
                       ),
                     ),
                     onChanged: (value) {
-                      if (searchController.text.length > 3) {
+                      if (searchController.text.length >= 3) {
                         controller.searchHospital(searchController.text);
                       } else {
+                        controller.notFound(false);
                         controller.showHospitalList();
                       }
                     },
@@ -63,21 +64,33 @@ class HospitalSearchPage extends StatelessWidget {
             ),
           ),
           Obx(() {
-            return controller.isloading.value
-                ? const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()))
-                : SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        childCount: controller.hospitalList.length,
-                        (context, index) {
-                    return HospitalListTile(
-                      name: controller.hospitalList[index]?.name ?? '',
-                      location: controller.hospitalList[index]?.location ?? '',
-                      number: controller.hospitalList[index]?.phone ?? '',
-                      type: controller.hospitalList[index]?.type ?? '',
-                      imageUrl: controller.hospitalList[index]?.imageUrl ?? '',
-                    );
-                  }));
+            if (controller.isloading.value) {
+              return const SliverFillRemaining(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else if (controller.notFound.value) {
+              return const SliverFillRemaining(
+                  child: Center(
+                      child: Text(
+                'No Hospital found',
+                style: TextStyle(color: Colors.black),
+              )));
+            } else {
+              return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      childCount: controller.hospitalList.length,
+                      (context, index) {
+                return HospitalListTile(
+                  name: controller.hospitalList[index]?.name ?? '',
+                  location: controller.hospitalList[index]?.location ?? '',
+                  number: controller.hospitalList[index]?.phone ?? '',
+                  type: controller.hospitalList[index]?.type ?? '',
+                  imageUrl: controller.hospitalList[index]?.imageUrl ?? '',
+                );
+              }));
+            }
           })
         ],
       ),

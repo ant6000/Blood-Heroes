@@ -18,33 +18,39 @@ class HospitalListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h, bottom: 5.h),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.green),
-        padding: const EdgeInsets.symmetric(vertical: 10),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.green.shade600,
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black54,
+                  blurRadius: 5,
+                  offset: Offset(0, 4),
+                  spreadRadius: 5)
+            ]),
+        //padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              height: 60.h,
+              height: 70.h,
               width: 70.w,
-              child: const Icon(
-                Icons.location_city_outlined,
-                size: 50,
-                //color: Colors.white,
+              child: Image.asset(
+                'images/icon3.png',
               ),
             ),
             SizedBox(
-              width: 220,
+              width: 220.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: TextStyle(fontSize: 20.sp)),
                   Text('Location: $location',
                       style: TextStyle(fontSize: 15.sp)),
-                  Text('Type: Medical college & hospital',
-                      style: TextStyle(fontSize: 15.sp)),
+                  // Text('Type: Medical college & hospital',
+                  //     style: TextStyle(fontSize: 15.sp)),
                 ],
               ),
             ),

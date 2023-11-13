@@ -15,24 +15,28 @@ class BloodBankTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      padding: EdgeInsets.only(top: 10.w, bottom: 5.h,left: 10.h, right: 10.h),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.green),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.green.shade600,
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black54,
+                  blurRadius: 5,
+                  offset: Offset(0, 4),
+                  spreadRadius: 5)
+            ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              height: 60.h,
-              width: 70.w,
-              child:  Icon(
-                Icons.add_home_work_sharp,
-                size: 50,
-                color: Colors.red.shade900,
-              ),
+              height: 50.h,
+              width: 50.w,
+              child: Image.asset('images/icon2.png'),
             ),
             SizedBox(
-              width: 220,
+              width: 220.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

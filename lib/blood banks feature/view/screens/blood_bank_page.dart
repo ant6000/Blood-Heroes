@@ -45,12 +45,13 @@ class BloodBankPage extends StatelessWidget {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(20)),
-                        prefixIcon: const Icon(Icons.local_hospital),
+                        prefixIcon: const Icon(Icons.location_pin),
                         hintText: 'Enter Location'),
                     onChanged: (value) {
-                      if (searchController.text.length > 3) {
+                      if (searchController.text.length >= 3) {
                         controller.searchBloodBank(searchController.text);
                       } else {
+                        controller.notFound(false);
                         controller.showBloodBankList();
                       }
                     },
@@ -60,27 +61,34 @@ class BloodBankPage extends StatelessWidget {
             ),
           ),
           Obx(() {
-            return controller.isloading.value
-                ? const SliverFillRemaining(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        childCount: controller.bloodBankList.length,
-                        (context, index) {
-                    return BloodBankTile(
-                      name: controller.bloodBankList[index]?.name.toString() ??
+            if (controller.isloading.value) {
+              return const SliverFillRemaining(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else if (controller.notFound.value) {
+              return const SliverFillRemaining(
+                  child: Center(
+                      child: Text(
+                'No Blood bank found',
+                style: TextStyle(color: Colors.black),
+              )));
+            } else {
+              return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      childCount: controller.bloodBankList.length,
+                      (context, index) {
+                return BloodBankTile(
+                  name: controller.bloodBankList[index]?.name.toString() ?? '',
+                  location:
+                      controller.bloodBankList[index]?.location.toString() ??
                           '',
-                      location: controller.bloodBankList[index]?.location
-                              .toString() ??
-                          '',
-                      number:
-                          controller.bloodBankList[index]?.phone.toString() ??
-                              '',
-                    );
-                  }));
+                  number:
+                      controller.bloodBankList[index]?.phone.toString() ?? '',
+                );
+              }));
+            }
           })
         ],
       ),
