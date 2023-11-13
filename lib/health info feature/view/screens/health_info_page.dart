@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AmbulanceSearchPage extends StatelessWidget {
-  const AmbulanceSearchPage({super.key});
+class HealthInfoPage extends StatelessWidget {
+  const HealthInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  const Text('Ambulance Search',style: TextStyle(color: Colors.white),),
+        title:  const Text('Health Info',style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: Colors.red.shade900,
       ),
