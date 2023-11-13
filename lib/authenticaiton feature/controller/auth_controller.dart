@@ -1,5 +1,4 @@
-import 'package:blood_fighters/authenticaiton%20feature/model/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:blood_fighter/authenticaiton%20feature/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -12,8 +11,6 @@ class AuthController extends GetxController {
   var verificationId = ''.obs;
   RxString phonNumber = ''.obs;
   Rx<UserModel?> userModel = Rx<UserModel?>(null);
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> login(String email, String password) async {
     try {
@@ -77,70 +74,72 @@ class AuthController extends GetxController {
         val!.donationStatus = currentStatus;
       });
     } catch (e) {
-      print('Error updating donation status: $e');
+      debugPrint('Error updating donation status: $e');
     }
   }
 
-  Future<void> signinWithPhone(String phoneNumber) async {
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: (credential) async {
-          await _auth.signInWithCredential(credential);
-          debugPrint("Phone number automatically verified and user signed in.");
-        },
-        verificationFailed: (error) {
-          debugPrint("Phone number verification failed: ${error.message}");
-          Get.snackbar('Error', error.toString(),
-              snackPosition: SnackPosition.BOTTOM);
-        },
-        codeSent: (verificationId, forceResendingToken) {
-          debugPrint("Code sent to the number: $verificationId");
-          this.verificationId.value = verificationId;
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
-          debugPrint("Auto retrieval timeout: $verificationId");
-          this.verificationId.value = verificationId;
-        },
-      );
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: (credential) async {
-          await _auth.signInWithCredential(credential);
-          debugPrint("Phone number automatically verified and user signed in.");
-        },
-        verificationFailed: (error) {
-          debugPrint("Phone number verification failed: ${error.message}");
-          Get.snackbar('Error', error.toString(),
-              snackPosition: SnackPosition.BOTTOM);
-        },
-        codeSent: (verificationId, forceResendingToken) {
-          debugPrint("Code sent to the number: $verificationId");
-          this.verificationId.value = verificationId;
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
-          debugPrint("Auto retrieval timeout: $verificationId");
-          this.verificationId.value = verificationId;
-        },
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
+  // Future<void> signinWithPhone(String phoneNumber) async {
+  //   try {
+  //     await _auth.verifyPhoneNumber(
+  //       phoneNumber: phoneNumber,
+  //       timeout: const Duration(seconds: 60),
+  //       verificationCompleted: (credential) async {
+  //         await _auth.signInWithCredential(credential);
+  //         debugPrint(
+  //             "Phone number automatically verified and user signed in.");
+  //       },
+  //       verificationFailed: (error) {
+  //         debugPrint("Phone number verification failed: ${error.message}");
+  //         Get.snackbar('Error', error.toString(),
+  //             snackPosition: SnackPosition.BOTTOM);
+  //       },
+  //       codeSent: (verificationId, forceResendingToken) {
+  //         debugPrint("Code sent to the number: $verificationId");
+  //         this.verificationId.value = verificationId;
+  //       },
+  //       codeAutoRetrievalTimeout: (verificationId) {
+  //         debugPrint("Auto retrieval timeout: $verificationId");
+  //         this.verificationId.value = verificationId;
+  //       },
+  //     );
+  //     await _auth.verifyPhoneNumber(
+  //       phoneNumber: phoneNumber,
+  //       timeout: const Duration(seconds: 60),
+  //       verificationCompleted: (credential) async {
+  //         await _auth.signInWithCredential(credential);
+  //         debugPrint(
+  //             "Phone number automatically verified and user signed in.");
+  //       },
+  //       verificationFailed: (error) {
+  //         debugPrint("Phone number verification failed: ${error.message}");
+  //         Get.snackbar('Error', error.toString(),
+  //             snackPosition: SnackPosition.BOTTOM);
+  //       },
+  //       codeSent: (verificationId, forceResendingToken) {
+  //         debugPrint("Code sent to the number: $verificationId");
+  //         this.verificationId.value = verificationId;
+  //       },
+  //       codeAutoRetrievalTimeout: (verificationId) {
+  //         debugPrint("Auto retrieval timeout: $verificationId");
+  //         this.verificationId.value = verificationId;
+  //       },
+  //     );
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
 
-  Future<void> signInWithCode(String otp) async {
-    try {
-      isLoading(true);
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationId.value, smsCode: otp);
-      await _auth.signInWithCredential(credential);
-      Get.offNamed('/homePage');
-    } catch (e) {
-      debugPrint(e.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
+  // Future<void> signInWithCode(String otp) async {
+  //   try {
+  //     isLoading(true);
+  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+  //         verificationId: verificationId.value, smsCode: otp);
+  //     await _auth.signInWithCredential(credential);
+  //     Get.offNamed('/homePage');
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   } finally {
+  //     isLoading(false);
+  //   }
+  // }
 }

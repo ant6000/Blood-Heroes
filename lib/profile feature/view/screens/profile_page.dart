@@ -69,7 +69,7 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.blue.shade900,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                child: Center(child: Text('Donation History',style: TextStyle(fontSize: 40,color: Colors.white))),
+                child: const Center(child: Text('Donation History',style: TextStyle(fontSize: 40,color: Colors.white))),
               ),
             ),
             SizedBox(height: 10.h),
@@ -82,7 +82,7 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.red.shade900,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                child: Center(child: Text('Request History',style: TextStyle(fontSize: 40,color: Colors.white))),
+                child: const Center(child: Text('Request History',style: TextStyle(fontSize: 40,color: Colors.white))),
               ),
             ),
             SizedBox(height: 10.h),
@@ -95,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.blue.shade900,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                child: Center(child: Text('Notifications History',style: TextStyle(fontSize: 30,color: Colors.white))),
+                child: const Center(child: Text('Notifications History',style: TextStyle(fontSize: 30,color: Colors.white))),
               ),
             ),
           ],

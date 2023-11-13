@@ -1,7 +1,8 @@
-import 'package:blood_fighters/blood%20request%20feature/controller/blood_request_controller.dart';
+import 'package:blood_fighter/blood%20request%20feature/controller/blood_request_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 
 class BloodRequestPage extends StatelessWidget {
   BloodRequestPage({super.key});
@@ -217,9 +218,9 @@ class BloodRequestPage extends StatelessWidget {
               SizedBox(height: 10.h),
               GestureDetector(
                 onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    print('success');
-                  }
+                  // if (formkey.currentState!.validate()) {
+
+                  // }
                 },
                 child: Container(
                   width: double.infinity,

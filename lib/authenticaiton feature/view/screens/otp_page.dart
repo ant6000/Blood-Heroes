@@ -1,4 +1,4 @@
-import 'package:blood_fighters/authenticaiton%20feature/controller/auth_controller.dart';
+import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,11 +39,7 @@ class OtpPage extends StatelessWidget {
                 numberOfFields: 6,
                 fillColor: Colors.black.withOpacity(0.1),
                 filled: true,
-
-                // onCodeChanged: (value) {
-                //   otp = value;
-                // },
-                onSubmit: (value) => controller.signInWithCode(value),
+                // onSubmit: (value) => controller.signInWithCode(value),
               ),
               SizedBox(height: 20.h),
               Row(

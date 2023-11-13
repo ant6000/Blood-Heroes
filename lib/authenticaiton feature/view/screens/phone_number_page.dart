@@ -1,4 +1,4 @@
-import 'package:blood_fighters/authenticaiton%20feature/controller/auth_controller.dart';
+import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -55,12 +55,12 @@ class PhoneNumberPage extends StatelessWidget {
                 SizedBox(height: 20.h),
                 GestureDetector(
                   onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      authController.phonNumber.value = phoneController.text;
-                      authController
-                          .signinWithPhone('+880${phoneController.text}');
-                      Get.toNamed('/otp');
-                    }
+                    // if (formKey.currentState!.validate()) {
+                    //   authController.phonNumber.value = phoneController.text;
+                    //   authController
+                    //       .signinWithPhone('+880${phoneController.text}');
+                    //   Get.toNamed('/otp');
+                    // }
                   },
                   child: Container(
                     height: 60.h,

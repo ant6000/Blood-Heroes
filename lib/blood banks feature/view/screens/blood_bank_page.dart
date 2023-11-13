@@ -1,4 +1,4 @@
-import 'package:blood_fighters/blood%20banks%20feature/controller/blood_bank_controller.dart';
+import 'package:blood_fighter/blood%20banks%20feature/controller/blood_bank_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/blood_bank_tile.dart';
@@ -50,7 +50,7 @@ class BloodBankPage extends StatelessWidget {
                     onChanged: (value) {
                       if (searchController.text.length > 3) {
                         controller.searchBloodBank(searchController.text);
-                      }else{
+                      } else {
                         controller.showBloodBankList();
                       }
                     },

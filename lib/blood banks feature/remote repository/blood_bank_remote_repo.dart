@@ -1,5 +1,6 @@
-import 'package:blood_fighters/blood%20banks%20feature/model/blood_bank_model.dart';
+import 'package:blood_fighter/blood%20banks%20feature/model/blood_bank_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class BloodBankRepo {
   static final FirebaseFirestore _database = FirebaseFirestore.instance;
@@ -16,8 +17,8 @@ class BloodBankRepo {
     }
   }
 
-  static Future <List<QueryDocumentSnapshot<Map<String, dynamic>>>> searchBloodBank(
-      String query) async {
+  static Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      searchBloodBank(String query) async {
     final querySnapshot = await _database.collection(collection).get();
 
     final result = querySnapshot.docs.where((doc) {
@@ -29,7 +30,7 @@ class BloodBankRepo {
     if (result.isNotEmpty) {
       return result.toList();
     } else {
-      print('Repo cant found data');
+      debugPrint('Repo cant found data');
       return [];
     }
   }

@@ -13,12 +13,12 @@ class BloodSearchRepo {
         .get();
     final results = querySnapshot.docs.where((doc) {
       final String address = doc['address'].toString().toLowerCase();
-       final bool donationStatus = doc['donationStatus'] ?? false; 
+      final bool donationStatus = doc['donationStatus'] ?? false;
       return address.contains(location.toLowerCase()) && donationStatus;
     });
 
     if (results.isNotEmpty) {
-      return results.toList()  ;
+      return results.toList();
     } else {
       debugPrint('repo cant found data');
       return [];

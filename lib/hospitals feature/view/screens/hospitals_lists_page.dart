@@ -1,4 +1,4 @@
-import 'package:blood_fighters/hospitals%20feature/controller/hospital_controller.dart';
+import 'package:blood_fighter/hospitals%20feature/controller/hospital_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/hospital_list_tile.dart';
@@ -53,7 +53,7 @@ class HospitalSearchPage extends StatelessWidget {
                     onChanged: (value) {
                       if (searchController.text.length > 3) {
                         controller.searchHospital(searchController.text);
-                      }else{
+                      } else {
                         controller.showHospitalList();
                       }
                     },

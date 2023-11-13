@@ -1,4 +1,4 @@
-import 'package:blood_fighters/authenticaiton%20feature/controller/auth_controller.dart';
+import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -92,7 +92,6 @@ class LoginPage extends StatelessWidget {
                       Obx(
                         () {
                           return Checkbox(
-                            checkColor: Colors.white,
                             value: authController.isChecked.value,
                             onChanged: (value) {
                               authController.isChecked.value = value!;
@@ -137,7 +136,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 10.h),
               GestureDetector(
                 onTap: () {
-                  Get.offNamed('/phoneNumber');
+                  Get.offNamed('/registraiton');
                 },
                 child: Container(
                   height: 60.h,
@@ -148,25 +147,11 @@ class LoginPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Icon(
-                      //   Icons.phone,
-                      //   color: Colors.red.shade900,
-                      // ),
-                      Text('Login with Phone',
+                      Text('Create new account',
                           style: TextStyle(
                               fontSize: 25, color: Colors.red.shade900)),
                     ],
                   ),
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Get.offNamed('/registraiton');
-                  },
-                  child: const Text('Register new account >',
-                      style: TextStyle(fontSize: 18, color: Colors.green)),
                 ),
               ),
             ],

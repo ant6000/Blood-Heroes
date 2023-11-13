@@ -1,4 +1,4 @@
-import 'package:blood_fighters/hospitals%20feature/model/hospital_model.dart';
+import 'package:blood_fighter/hospitals%20feature/model/hospital_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +33,7 @@ class HospitalController extends GetxController {
         hospitalList.value = resultList;
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 }

@@ -124,12 +124,6 @@ class HomePage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: const Text('Settings'),
-                leading: const Icon(Icons.settings),
-                trailing: const Icon(Icons.arrow_forward_ios_rounded),
-                onTap: () {},
-              ),
-              ListTile(
                 title: const Text('Dark Theme'),
                 leading: const Icon(Icons.dark_mode),
                 trailing: Switch(

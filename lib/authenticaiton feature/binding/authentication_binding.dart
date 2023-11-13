@@ -1,5 +1,5 @@
-import 'package:blood_fighters/authenticaiton%20feature/controller/auth_controller.dart';
-import 'package:blood_fighters/authenticaiton%20feature/remote%20repository/auth_repo.dart';
+import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
+import 'package:blood_fighter/authenticaiton%20feature/remote%20repository/auth_repo.dart';
 import 'package:get/get.dart';
 
 class LoginBinding extends Bindings {
@@ -9,6 +9,7 @@ class LoginBinding extends Bindings {
     Get.put(AuthController());
   }
 }
+
 class HomePageBinding extends Bindings {
   @override
   void dependencies() {

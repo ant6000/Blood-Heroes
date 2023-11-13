@@ -1,4 +1,4 @@
-import 'package:blood_fighters/blood%20search%20feature/controller/blood_serach_controller.dart';
+import 'package:blood_fighter/blood%20search%20feature/controller/blood_serach_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

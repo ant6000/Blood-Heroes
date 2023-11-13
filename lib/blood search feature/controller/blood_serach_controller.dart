@@ -1,4 +1,4 @@
-import 'package:blood_fighters/blood%20search%20feature/model/blood_search_model.dart';
+import 'package:blood_fighter/blood%20search%20feature/model/blood_search_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +22,7 @@ class BloodSearchController extends GetxController {
       userList.addAll(donorList);
     } catch (e) {
       debugPrint(e.toString());
-    }finally {
+    } finally {
       isLoading(false); // Set loading back to false
     }
   }
