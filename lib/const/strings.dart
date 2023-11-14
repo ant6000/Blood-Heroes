@@ -1,0 +1,6 @@
+String data_privecy =
+    'Your privacy is important to us. This Privacy Policy explains how Blood Fighter  collects, uses, and protects your personal information when you use our application. \nPersonal Information: We may collect personal information such as your name, contact number, and email address when you register or use our service.';
+String about =
+    'The development of this blood donation app  is a response to a critical healthcare challenge. Bloodshortage is a recurring issue that can have life-threatening consequences for patients in need of blood transfusions. \nIn this context, this app aims to bridge the gap between willing donors and individuals or medical facilities requiring blood.';
+String smoking =
+    'Smoking is a leading cause of cancer, contributing to various types such as lung, throat, and mouth cancer. The harmful chemicals in tobacco smoke damage DNA, leading to the uncontrolled growth of abnormal cells. Carcinogens present in cigarettes increase the risk of mutations, making smoking a primary risk factor for cancer development. Quitting smoking significantly reduces the likelihood of cancer and improves overall health. Public awareness and tobacco cessation efforts play a crucial role in preventing the devastating impact of smoking-related cancers.';

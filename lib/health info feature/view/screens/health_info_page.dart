@@ -1,3 +1,4 @@
+import 'package:blood_fighter/health%20info%20feature/view/widgets/health_card.dart';
 import 'package:flutter/material.dart';
 
 class HealthInfoPage extends StatelessWidget {
@@ -11,9 +12,14 @@ class HealthInfoPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red.shade900,
       ),
-      body: Center(
-        child: Text('Comming Soon',style: TextStyle(fontSize: 40,color: Colors.red.shade900)),
-      ),
+      body: ListView(
+        children: [
+          HealthCard(),
+          HealthCard(),
+          HealthCard(),
+          HealthCard(),
+        ],
+      )
     );
   }
 }

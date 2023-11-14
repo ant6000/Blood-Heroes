@@ -1,6 +1,10 @@
+import 'package:blood_fighter/const/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:rate_my_app/rate_my_app.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../authenticaiton feature/controller/auth_controller.dart';
 import '../widgets/feature_card.dart';
 
@@ -9,6 +13,14 @@ class HomePage extends StatelessWidget {
 
   final authController = Get.find<AuthController>();
   bool isDarkMode = false;
+  final _rateMyApp = RateMyApp(
+    remindDays: 2,
+    remindLaunches: 2,
+    minLaunches: 5,
+    minDays: 2,
+    googlePlayIdentifier: '',
+    preferencesPrefix: '_rateMyApp',
+  );
 
   final List featureList = [
     'Blood Search',
@@ -21,13 +33,6 @@ class HomePage extends StatelessWidget {
     'Ambulance',
     'Helth Info',
     'About',
-  ];
-  List<String> notifications = [
-    'Antor chakraborty need emerjency need 1 bag Ab+ blood',
-    'Tasnim hossain need emerjency need 3 bag O+ blood',
-    'Notification 3',
-    'Notification 4',
-    'Notification 5',
   ];
 
   @override
@@ -119,27 +124,89 @@ class HomePage extends StatelessWidget {
                     )),
               ),
               ListTile(
-                title: const Text('Data & Privecy Policy'),
+                title: const Text('Data Privecy & Policy'),
                 leading: const Icon(Icons.policy),
                 onTap: () {
                   Get.defaultDialog(
                       title: 'Data & Privecy Policy',
                       actions: [
-                        TextButton(onPressed: () {}, child: Text('cancle')),
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: const Text('Cancle')),
                       ],
-                      content: Text(
-                          'We take reasonable steps to protect your personal information from unauthorized access or disclosure. However, no method of transmission over the internet or electronic storage is 100% secure.\n \n Our app may contain links to third-party websites or services. We are not responsible for the content or privacy practices of those third-party sites.\n\nPlease tailor this privacy policy to fit the specific features and data processing activities of your blood donation app. Consult with legal professionals to ensure compliance with applicable privacy laws and regulations.'));
+                      content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data_privecy),
+                          GestureDetector(
+                              onTap: () async {
+                                Uri url =
+                                    Uri.parse('https://github.com/ant6000');
+                                await launchUrl(url);
+                              },
+                              child: const Text(
+                                'To Read More click here',
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    decoration: TextDecoration.underline),
+                              )),
+                        ],
+                      ));
                 },
               ),
               ListTile(
                 title: const Text('Share'),
                 leading: const Icon(Icons.share),
-                onTap: () {},
+                onTap: () async {
+                  await Share.shareWithResult(
+                      'Blood Fighter https://example.com');
+                },
               ),
               ListTile(
                 title: const Text('Rate the app'),
                 leading: const Icon(Icons.star_border),
-                onTap: () {},
+                onTap: () {
+                  _rateMyApp.init().then((_) {
+                    _rateMyApp.showStarRateDialog(context,
+                        title: 'Please Rate this app',
+                        message: 'This will help us to make better app',
+                        actionsBuilder: (context, stars) {
+                          return [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.green
+                                  ),
+                                  child: const Text('Submit',style: TextStyle(color: Colors.white)),
+                                  onPressed: () {},
+                                ),
+                                const SizedBox(width: 10),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.red.shade800
+                                  ),
+                                  child: const Text('Cancle',style: TextStyle(color: Colors.white),),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                              ],
+                            )
+                          ];
+                        },
+                        dialogStyle: const DialogStyle(
+                            titleAlign: TextAlign.center,
+                            messageAlign: TextAlign.center,
+                            messagePadding: EdgeInsets.only(bottom: 10)),
+                        starRatingOptions: const StarRatingOptions(),
+                        onDismissed: () => _rateMyApp
+                            .callEvent(RateMyAppEventType.laterButtonPressed));
+                  });
+                },
               ),
               ListTile(
                 title: Text(
@@ -196,7 +263,7 @@ class HomePage extends StatelessWidget {
       case 7:
         return '/ambulance';
       case 8:
-        return '/healthinfo';
+        return '/healthInfo';
       case 9:
         return '/about';
     }

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(360, 800),
         minTextAdapt: true,
-        builder: (_, child) {
+        builder: (_,child) {
           return GetMaterialApp(
             title: 'Blood Fighter',
             debugShowCheckedModeBanner: false,
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/bloodRequest', page: () => BloodRequestPage()),
               GetPage(name: '/bloodBank', page: () => BloodBankPage()),
               GetPage(name: '/hospitals', page: () => HospitalSearchPage()),
-              GetPage(name: '/doctors', page: () => const DoctorsPage()),
+              GetPage(name: '/doctors', page: () => DoctorsPage()),
               GetPage(name: '/nurse', page: () => const NursePage()),
               GetPage(name: '/emergency', page: () => const EmergencyPage()),
               GetPage(name: '/ambulance', page: () => const AmbulanceSearchPage()),

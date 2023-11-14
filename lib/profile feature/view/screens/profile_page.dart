@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../authenticaiton feature/controller/auth_controller.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -47,6 +46,9 @@ class ProfilePage extends StatelessWidget {
                 )
               ],
             ),
+            Center(
+                child: Text('Lase Donation Date: -- -- --',
+                    style: TextStyle(fontSize: 16.sp))),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: ElevatedButton(
@@ -59,44 +61,43 @@ class ProfilePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   )),
             ),
-            SizedBox(height: 10.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: Container(
-                width: double.infinity,
-                height: 200,
+                height: 150.h,
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade900,
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20),
+                color: Colors.green,
                 ),
-                child: const Center(child: Text('Donation History',style: TextStyle(fontSize: 40,color: Colors.white))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('0', style: TextStyle(fontSize: 50.sp)),
+                    Text('Number of donation', style: TextStyle(fontSize: 20.sp)),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 10.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.red.shade900,
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: const Center(child: Text('Request History',style: TextStyle(fontSize: 40,color: Colors.white))),
-              ),
-            ),
-            SizedBox(height: 10.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade900,
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: const Center(child: Text('Notifications History',style: TextStyle(fontSize: 30,color: Colors.white))),
-              ),
+             Center(
+                child: Text(
+              'Accepted Donor',
+              style: TextStyle(fontSize: 20.sp),
+            )),
+            ListView.builder(
+              itemCount: 10,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: ListTile(
+                    tileColor: Colors.amber,
+                    textColor: Colors.black,
+                    title: Text('Antor, chakraborty'),
+                  ),
+                );
+              },
             ),
           ],
         ));
