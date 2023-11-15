@@ -46,7 +46,8 @@ class DoctorsPage extends StatelessWidget {
                             filled: true,
                             prefixIcon: const Icon(Icons.location_on),
                             hintText: 'Enter Hospital name',
-                            errorStyle: const TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+                            errorStyle: const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1)),
                             hintStyle: TextStyle(
                               color: Theme.of(context).brightness ==
                                       Brightness.dark
@@ -99,21 +100,16 @@ class DoctorsPage extends StatelessWidget {
                         },
                         items: const [
                           DropdownMenuItem<String>(
-                              value: 'A+', child: Text('A+')),
+                              value: 'Internal medicine',
+                              child: Text('Internal medicine')),
                           DropdownMenuItem<String>(
-                              value: 'A-', child: Text('A-')),
+                              value: 'A-', child: Text('Ophthalmology')),
                           DropdownMenuItem<String>(
-                              value: 'B+', child: Text('B+')),
+                              value: 'B+', child: Text('Dermatology')),
                           DropdownMenuItem<String>(
-                              value: 'B-', child: Text('B-')),
+                              value: 'B-', child: Text('Gastroenterology')),
                           DropdownMenuItem<String>(
-                              value: 'O+', child: Text('O+')),
-                          DropdownMenuItem<String>(
-                              value: 'O-', child: Text('O-')),
-                          DropdownMenuItem<String>(
-                              value: 'AB+', child: Text('AB+')),
-                          DropdownMenuItem<String>(
-                              value: 'AB-', child: Text('AB-')),
+                              value: 'O+', child: Text('Neurology')),
                         ],
                       ),
                       SizedBox(height: 10.h),
@@ -135,7 +131,7 @@ class DoctorsPage extends StatelessWidget {
                                 fontSize: 30, color: Colors.red.shade900),
                           )),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -143,6 +139,14 @@ class DoctorsPage extends StatelessWidget {
             ),
           ),
         ),
+        SliverFillRemaining(
+          child: Center(
+            child: Text(
+              'Comming soon',
+              style: TextStyle(fontSize: 20.sp, color: Colors.red.shade900),
+            ),
+          ),
+        )
       ],
     ));
   }

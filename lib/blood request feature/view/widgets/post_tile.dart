@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostTile extends StatelessWidget {
   final String location;
@@ -8,7 +9,6 @@ class PostTile extends StatelessWidget {
   final String name;
   final String phone;
   final String condition;
-  final String date;
   const PostTile(
       {required this.name,
       required this.location,
@@ -16,7 +16,6 @@ class PostTile extends StatelessWidget {
       required this.phone,
       required this.quantity,
       required this.condition,
-      required this.date,
       super.key});
   @override
   Widget build(BuildContext context) {
@@ -31,46 +30,44 @@ class PostTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Name: $name',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Text('Location: $location'),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text('Blood Group: $bloodGroup'),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Text('Quantity: $quantity units'),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text('Condition: $condition'),
-                const SizedBox(height: 8),
-                Text('Date: $date'),
-                const SizedBox(height: 8),
-                Text('Phone: $phone'),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Name: $name',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('Location: $location'),
+                  const SizedBox(height: 8),
+                  Text('Quantity: $quantity units'),
+                  const SizedBox(height: 8),
+                  Text('Condition: $condition'),
+                ],
+              ),
             ),
             Column(
-              //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 30,
                   backgroundColor: Colors.red,
-                  child: Text('AB+',style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    bloodGroup,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
                 SizedBox(height: 20.h),
                 TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.green),
-                    onPressed: () {},
-                    child: const Text('Donate',style: TextStyle(color: Colors.white),))
+                    onPressed: () async {
+                      final url = Uri(scheme: 'tel', path: phone);
+                      await launchUrl(url);
+                    },
+                    child: const Text(
+                      'Donate',
+                      style: TextStyle(color: Colors.white),
+                    ))
               ],
             )
           ],

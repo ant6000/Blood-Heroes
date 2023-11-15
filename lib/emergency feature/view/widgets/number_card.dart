@@ -4,7 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NumberCard extends StatelessWidget {
   final String imageUrl;
-  const NumberCard({required this.imageUrl, super.key});
+  final String phone;
+  const NumberCard({required this.imageUrl,required this.phone, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,17 @@ class NumberCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: GestureDetector(
         onTap: () async {
-          final url = Uri(scheme: 'tel', path: '999');
+          final url = Uri(scheme: 'tel', path: phone);
           await launchUrl(url);
         },
         child: Card(
           color: Colors.white,
-          elevation: 2,
+          elevation: 3,
           child: SizedBox(
-            height: 150.h,
+            height: 180.h,
             child: Image.asset(
               imageUrl,
-              fit: BoxFit.scaleDown,
+              fit: BoxFit.cover,
             ),
           ),
         ),

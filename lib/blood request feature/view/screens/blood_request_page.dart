@@ -9,10 +9,16 @@ class BloodRequestPage extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
   String? bloodGroup;
   String? patientCondition;
+  final nameController = TextEditingController();
+  final addressController = TextEditingController();
+  final phoneController = TextEditingController();
+  final quantityController = TextEditingController();
+  final detailsController = TextEditingController();
   final bloodRequestController = Get.put(BloodRequestController());
 
   @override
   Widget build(BuildContext context) {
+    bloodRequestController.getRequestPost();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -38,7 +44,7 @@ class BloodRequestPage extends StatelessWidget {
               ]),
         ),
         body: TabBarView(children: [
-          _requestFeed(),
+          Obx(() => _requestFeed()),
           _requestForm(),
         ]),
       ),
@@ -54,6 +60,8 @@ class BloodRequestPage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           children: [
             TextFormField(
+              controller: nameController,
+              keyboardType: TextInputType.name,
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.abc),
                   label: const Text('Enter Patient name'),
@@ -104,6 +112,8 @@ class BloodRequestPage extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             TextFormField(
+              controller: addressController,
+              keyboardType: TextInputType.streetAddress,
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.local_hospital_rounded),
                   label: const Text('Enter Hospital Address'),
@@ -120,8 +130,11 @@ class BloodRequestPage extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             TextFormField(
+                controller: phoneController,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.phone),
+                    prefix: const Text('+880 '),
                     label: const Text('Enter Contact number'),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
@@ -217,6 +230,7 @@ class BloodRequestPage extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             TextFormField(
+                controller: quantityController,
                 keyboardType: TextInputType.number,
                 maxLines: 1,
                 decoration: InputDecoration(
@@ -232,7 +246,8 @@ class BloodRequestPage extends StatelessWidget {
                 }),
             SizedBox(height: 10.h),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              controller: detailsController,
+              keyboardType: TextInputType.text,
               maxLines: 3,
               decoration: InputDecoration(
                   label: const Text('Aditional Details'),
@@ -241,23 +256,51 @@ class BloodRequestPage extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             GestureDetector(
-              onTap: () {
-                // if (formkey.currentState!.validate()) {
-
-                // }
-              },
-              child: Container(
-                width: double.infinity,
-                height: 60.h,
-                decoration: BoxDecoration(
-                    color: Colors.red.shade900,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                  child: Text('Request for Blood',
-                      style: TextStyle(fontSize: 25, color: Colors.white)),
-                ),
-              ),
-            ),
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    try {
+                      bloodRequestController.sendRequest(
+                          nameController.text,
+                          bloodRequestController.gender.value!,
+                          addressController.text,
+                          '+880 ${phoneController.text}',
+                          patientCondition!,
+                          bloodRequestController.blood.value!,
+                          bloodRequestController.plasma.value!,
+                          bloodRequestController.platelets.value!,
+                          bloodGroup!,
+                          int.parse(quantityController.text),
+                          detailsController.text);
+                      Get.snackbar('Success', 'Request sent successfully',
+                          snackPosition: SnackPosition.BOTTOM);
+                    } catch (e) {
+                      Get.snackbar('Error', 'Failed to send request: $e');
+                    }
+                  }
+                },
+                child: Container(
+                    height: 60.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.red.shade900,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Obx(() {
+                      if (bloodRequestController.isLoading2.isTrue) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.blue),
+                          ),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text(
+                            'Request for Blood',
+                            style: TextStyle(fontSize: 25, color: Colors.white),
+                          ),
+                        );
+                      }
+                    }))),
           ],
         ),
       ),
@@ -265,19 +308,22 @@ class BloodRequestPage extends StatelessWidget {
   }
 
   Widget _requestFeed() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const PostTile(
-          name: 'Antor Chakraborty',
-          bloodGroup: 'AB+',
-          location: "Dhaka,Berdem Hospital",
-          phone: "01863737120",
-          quantity: 2,
-          condition: 'Emergency',
-          date: '11/11/2023',
-        );
-      },
-    );
+    return bloodRequestController.isLoading.value
+        ? const Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: bloodRequestController.postDatalist.length,
+            itemBuilder: (context, index) {
+              return PostTile(
+                name: bloodRequestController.postDatalist[index]!.name,
+                bloodGroup:
+                    bloodRequestController.postDatalist[index]!.bloodGroup,
+                location: bloodRequestController.postDatalist[index]!.address,
+                phone: bloodRequestController.postDatalist[index]!.phone,
+                quantity: bloodRequestController.postDatalist[index]!.quantity,
+                condition: bloodRequestController
+                    .postDatalist[index]!.medicalCondition,
+              );
+            },
+          );
   }
 }

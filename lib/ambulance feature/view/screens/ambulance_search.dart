@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
   const AmbulanceSearchPage({super.key});
@@ -12,7 +13,7 @@ class AmbulanceSearchPage extends StatelessWidget {
         backgroundColor: Colors.red.shade900,
       ),
       body: Center(
-        child: Text('Comming Soon',style: TextStyle(fontSize: 40,color: Colors.red.shade900)),
+        child: Text('Comming Soon',style: TextStyle(fontSize: 20.sp,color: Colors.red.shade900)),
       ),
     );
   }

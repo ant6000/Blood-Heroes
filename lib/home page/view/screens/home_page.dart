@@ -136,23 +136,26 @@ class HomePage extends StatelessWidget {
                             },
                             child: const Text('Cancle')),
                       ],
-                      content: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(data_privecy),
-                          GestureDetector(
-                              onTap: () async {
-                                Uri url =
-                                    Uri.parse('https://github.com/ant6000');
-                                await launchUrl(url);
-                              },
-                              child: const Text(
-                                'To Read More click here',
-                                style: TextStyle(
-                                    color: Colors.green,
-                                    decoration: TextDecoration.underline),
-                              )),
-                        ],
+                      content: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(data_privecy,textAlign: TextAlign.justify,),
+                            GestureDetector(
+                                onTap: () async {
+                                  Uri url =
+                                      Uri.parse('https://github.com/ant6000');
+                                  await launchUrl(url);
+                                },
+                                child: const Text(
+                                  'To Read More click here',
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      decoration: TextDecoration.underline),
+                                )),
+                          ],
+                        ),
                       ));
                 },
               ),
