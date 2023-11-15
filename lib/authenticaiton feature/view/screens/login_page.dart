@@ -22,6 +22,7 @@ class LoginPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(
+          key: formKey,
           child: ListView(
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.only(top: 50.h),
@@ -71,15 +72,6 @@ class LoginPage extends StatelessWidget {
                         label: const Text('Enter your password'),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20))),
-                    validator: (value) {
-                      if (value!.isEmpty ||
-                          !RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{8,}$')
-                              .hasMatch(value)) {
-                        return 'Password must meet the requirements';
-                      } else {
-                        return null;
-                      }
-                    },
                   );
                 },
               ),
@@ -103,16 +95,26 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   TextButton(
-                      onPressed: () {}, child: const Text('Forgor Password?')),
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20))),
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          authController.passwordRest(emailController.text);
+                        }
+                      },
+                      child: const Text('Forgor Password?')),
                 ],
               ),
               SizedBox(height: 10.h),
               GestureDetector(
                 onTap: () {
-                  authController.login(
-                    emailController.text,
-                    passwordController.text,
-                  );
+                  if (formKey.currentState!.validate()) {
+                    authController.login(
+                      emailController.text,
+                      passwordController.text,
+                    );
+                  }
                 },
                 child: Obx(
                   () => Container(

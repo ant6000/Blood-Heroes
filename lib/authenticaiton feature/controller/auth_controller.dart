@@ -79,6 +79,17 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> passwordRest(String email) async {
+    try {
+      await AuthRepo.resetPassword(email);
+      Get.snackbar('Password Reser', 'Password reset link sent to your mail! Check $email',
+      snackPosition:SnackPosition.BOTTOM);
+    } catch (e) {
+      Get.snackbar('Error', 'Enter valid email',
+      snackPosition:SnackPosition.BOTTOM);
+    }
+  }
+
   // Future<void> signinWithPhone(String phoneNumber) async {
   //   try {
   //     await _auth.verifyPhoneNumber(
