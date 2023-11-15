@@ -1,4 +1,5 @@
 import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
+import 'package:blood_fighter/const/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,9 +8,9 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final bool value = false;
   final formKey = GlobalKey<FormState>();
   final authController = Get.put(AuthController());
+  //final bool value = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'package:blood_fighter/authenticaiton%20feature/model/user_model.dart';
+import 'package:blood_fighter/const/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,9 @@ class AuthController extends GetxController {
     try {
       isLoading(true);
       await AuthRepo.signIn(email, password);
+      if(isChecked.value){
+      await SharedPref.setEmail(email);
+      }
       showUserInfo(email);
       Get.toNamed('/homePage');
     } catch (e) {
@@ -48,6 +52,7 @@ class AuthController extends GetxController {
   Future<void> logOut() async {
     try {
       await AuthRepo.signOut();
+      await SharedPref.deleteEmail(userModel.value!.email);
       userModel.value = null;
       Get.offNamed('/login');
     } catch (e) {
@@ -82,11 +87,12 @@ class AuthController extends GetxController {
   Future<void> passwordRest(String email) async {
     try {
       await AuthRepo.resetPassword(email);
-      Get.snackbar('Password Reser', 'Password reset link sent to your mail! Check $email',
-      snackPosition:SnackPosition.BOTTOM);
+      Get.snackbar('Password Reser',
+          'Password reset link sent to your mail! Check $email',
+          snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar('Error', 'Enter valid email',
-      snackPosition:SnackPosition.BOTTOM);
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 

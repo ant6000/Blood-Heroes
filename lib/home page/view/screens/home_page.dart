@@ -1,3 +1,4 @@
+import 'package:blood_fighter/const/shared_pref.dart';
 import 'package:blood_fighter/const/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -141,7 +142,10 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(data_privecy,textAlign: TextAlign.justify,),
+                            Text(
+                              data_privecy,
+                              textAlign: TextAlign.justify,
+                            ),
                             GestureDetector(
                                 onTap: () async {
                                   Uri url =
@@ -182,17 +186,19 @@ class HomePage extends StatelessWidget {
                               children: [
                                 TextButton(
                                   style: TextButton.styleFrom(
-                                    backgroundColor: Colors.green
-                                  ),
-                                  child: const Text('Submit',style: TextStyle(color: Colors.white)),
+                                      backgroundColor: Colors.green),
+                                  child: const Text('Submit',
+                                      style: TextStyle(color: Colors.white)),
                                   onPressed: () {},
                                 ),
                                 const SizedBox(width: 10),
                                 TextButton(
                                   style: TextButton.styleFrom(
-                                    backgroundColor: Colors.red.shade800
+                                      backgroundColor: Colors.red.shade800),
+                                  child: const Text(
+                                    'Cancle',
+                                    style: TextStyle(color: Colors.white),
                                   ),
-                                  child: const Text('Cancle',style: TextStyle(color: Colors.white),),
                                   onPressed: () {
                                     Get.back();
                                   },
@@ -217,8 +223,8 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.red.shade900),
                 ),
                 leading: const Icon(Icons.logout),
-                onTap: () {
-                  authController.logOut();
+                onTap: () async {
+                  await authController.logOut();
                 },
               ),
             ],

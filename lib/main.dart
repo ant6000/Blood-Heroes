@@ -15,6 +15,7 @@ import 'blood request feature/view/screens/blood_request_page.dart';
 import 'authenticaiton feature/view/screens/registration_page.dart';
 import 'health info feature/view/screens/health_info_page.dart';
 import 'home page/view/screens/home_page.dart';
+import 'home page/view/screens/splash_screen.dart';
 import 'nurse feature/view/screens/nurse_page.dart';
 import 'profile feature/view/screens/profile_page.dart';
 
@@ -46,8 +47,9 @@ class MyApp extends StatelessWidget {
               primaryColor: Colors.red.shade900,
               useMaterial3: true,
             ),
-            initialRoute: '/login',
+            initialRoute: '/splash',
             getPages: [
+              GetPage(name: '/splash', page: () =>const SplashScreen()),
               GetPage(name: '/login', page: () => LoginPage()),
               GetPage(name: '/registraiton', page: () => RegistrationPage()),
               GetPage(name: '/homePage', page: () => HomePage()),
