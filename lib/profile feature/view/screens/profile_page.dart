@@ -129,7 +129,7 @@ class ProfilePage extends StatelessWidget {
                     color: Colors.green,
                   ),
                   child: ListView(
-                    children: [
+                    children: const [
                       ListTile(
                         leading: Text('--/--/--'),
                         title: Text('-- Bag'),

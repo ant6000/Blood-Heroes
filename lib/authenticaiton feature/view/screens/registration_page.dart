@@ -24,6 +24,7 @@ class RegistrationPage extends StatelessWidget {
         title: const Text('Blood Fighter',
             style: TextStyle(fontSize: 20, color: Colors.white)),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -218,7 +219,7 @@ class RegistrationPage extends StatelessWidget {
                         emailController.text,
                         passwordController.text,
                         nameController.text,
-                        '8801${phoneController.text}',
+                        '880${phoneController.text}',
                         locationController.text,
                         selectedBloodGroup!);
                   }

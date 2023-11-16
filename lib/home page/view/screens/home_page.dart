@@ -1,4 +1,3 @@
-import 'package:blood_fighter/const/shared_pref.dart';
 import 'package:blood_fighter/const/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,6 @@ import '../widgets/feature_card.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-
   final authController = Get.find<AuthController>();
   bool isDarkMode = false;
   final _rateMyApp = RateMyApp(
@@ -149,7 +147,7 @@ class HomePage extends StatelessWidget {
                             GestureDetector(
                                 onTap: () async {
                                   Uri url =
-                                      Uri.parse('https://github.com/ant6000');
+                                      Uri.parse('https://sites.google.com/view/bloodfighter-org/home');
                                   await launchUrl(url);
                                 },
                                 child: const Text(
@@ -168,7 +166,7 @@ class HomePage extends StatelessWidget {
                 leading: const Icon(Icons.share),
                 onTap: () async {
                   await Share.shareWithResult(
-                      'Blood Fighter https://example.com');
+                      'https://play.google.com/store/apps/details?id=Blood Fighter com.example.blood_heroes');
                 },
               ),
               ListTile(

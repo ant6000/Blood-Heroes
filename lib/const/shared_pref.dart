@@ -7,15 +7,15 @@ class SharedPref {
     sharedPreferences.setString('email', email);
   }
 
-  static Future<String?> getEmail(String email) async {
+  static Future<String?> getEmail() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    return sharedPreferences.getString(email);
+    return sharedPreferences.getString('email');
   }
 
   static Future<void> deleteEmail(String email) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    sharedPreferences.remove('email');
+    sharedPreferences.remove('email');    
   }
 }

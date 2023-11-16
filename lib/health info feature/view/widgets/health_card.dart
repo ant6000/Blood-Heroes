@@ -23,7 +23,7 @@ class HealthCard extends StatelessWidget {
               title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               body,style: TextStyle(fontSize: 15.sp),
               textAlign: TextAlign.justify,

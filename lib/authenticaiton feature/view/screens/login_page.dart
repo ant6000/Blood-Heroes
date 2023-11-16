@@ -1,5 +1,4 @@
 import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
-import 'package:blood_fighter/const/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,12 +8,13 @@ class LoginPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final authController = Get.put(AuthController());
+  final authController = Get.find<AuthController>();
   //final bool value = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.red.shade900,
         title: const Text('Blood Fighter',
             style: TextStyle(fontSize: 20, color: Colors.white)),

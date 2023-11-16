@@ -1,12 +1,13 @@
-import 'package:blood_fighter/authenticaiton%20feature/controller/auth_controller.dart';
-import 'package:blood_fighter/authenticaiton%20feature/remote%20repository/auth_repo.dart';
+
 import 'package:get/get.dart';
+import '../controller/auth_controller.dart';
+import '../remote repository/auth_repo.dart';
 
 class LoginBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(AuthRepo());
     Get.put(AuthController());
+    Get.put(AuthRepo());
   }
 }
 

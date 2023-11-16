@@ -18,8 +18,8 @@ class AuthController extends GetxController {
     try {
       isLoading(true);
       await AuthRepo.signIn(email, password);
-      if(isChecked.value){
-      await SharedPref.setEmail(email);
+      if (isChecked.value) {
+        await SharedPref.setEmail(email);
       }
       showUserInfo(email);
       Get.toNamed('/homePage');
@@ -40,6 +40,10 @@ class AuthController extends GetxController {
       isLoading(true);
       await AuthRepo.signUp(email, password, name, phone, address, bloodGroup);
       Fluttertoast.showToast(msg: 'Account Created Successfully');
+      if (isChecked.value) {
+        await SharedPref.setEmail(email);
+      }
+      showUserInfo(email);
       Get.offNamed('/homePage');
     } catch (e) {
       Get.snackbar('Registration Error', e.toString(),
@@ -54,7 +58,10 @@ class AuthController extends GetxController {
       await AuthRepo.signOut();
       await SharedPref.deleteEmail(userModel.value!.email);
       userModel.value = null;
-      Get.offNamed('/login');
+      Fluttertoast.showToast(
+        msg: 'Logout Succesfully',
+      );
+      Get.offAllNamed('/login');
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Logout Failed',
