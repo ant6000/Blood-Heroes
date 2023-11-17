@@ -146,8 +146,8 @@ class HomePage extends StatelessWidget {
                             ),
                             GestureDetector(
                                 onTap: () async {
-                                  Uri url =
-                                      Uri.parse('https://sites.google.com/view/bloodfighter-org/home');
+                                  Uri url = Uri.parse(
+                                      'https://sites.google.com/view/bloodfighter-org/home');
                                   await launchUrl(url);
                                 },
                                 child: const Text(
@@ -166,7 +166,7 @@ class HomePage extends StatelessWidget {
                 leading: const Icon(Icons.share),
                 onTap: () async {
                   await Share.shareWithResult(
-                      'https://play.google.com/store/apps/details?id=Blood Fighter com.example.blood_heroes');
+                      'https://play.google.com/store/apps/details?id=com.antor.blood_heroes');
                 },
               ),
               ListTile(

@@ -1,4 +1,4 @@
-package com.blood_heroes
+package com.antor.blood_heroes
 
 import io.flutter.embedding.android.FlutterActivity
 
