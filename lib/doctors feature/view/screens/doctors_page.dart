@@ -1,10 +1,16 @@
+import 'package:blood_fighter/doctors%20feature/controller/doctor_controller.dart';
+import 'package:blood_fighter/doctors%20feature/view/widgets/doctors_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class DoctorsPage extends StatelessWidget {
   DoctorsPage({super.key});
+  
+  String? depeartment;
+  final locationController = TextEditingController();
+  final controller = Get.find<DocController>();
   final formKey = GlobalKey<FormState>();
-  String? doctors;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +19,8 @@ class DoctorsPage extends StatelessWidget {
       slivers: [
         SliverAppBar(
           automaticallyImplyLeading: true,
-          title: const Text('Search Doctors',
-              style: TextStyle(color: Colors.white)),
+          title:
+              const Text('Search Doctor', style: TextStyle(color: Colors.white)),
           centerTitle: true,
           expandedHeight: 300.h,
           backgroundColor: Colors.red.shade900,
@@ -36,6 +42,7 @@ class DoctorsPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 70),
                       TextFormField(
+                        controller: locationController,
                         keyboardType: TextInputType.name,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
@@ -45,9 +52,8 @@ class DoctorsPage extends StatelessWidget {
                                     : Colors.white,
                             filled: true,
                             prefixIcon: const Icon(Icons.location_on),
-                            hintText: 'Enter Hospital name',
-                            errorStyle: const TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1)),
+                            hintText: 'Enter Thana, Division',
+                            errorStyle: const TextStyle(color: Colors.white),
                             hintStyle: TextStyle(
                               color: Theme.of(context).brightness ==
                                       Brightness.dark
@@ -65,7 +71,6 @@ class DoctorsPage extends StatelessWidget {
                           }
                         },
                       ),
-                      //const SizedBox(height: 70),
                       SizedBox(height: 10.h),
                       DropdownButtonFormField<String>(
                         borderRadius: BorderRadius.circular(20),
@@ -84,38 +89,46 @@ class DoctorsPage extends StatelessWidget {
                             prefixIcon: const Icon(
                               Icons.water_drop,
                             ),
-                            hintText: 'Select Depertment',
+                            hintText: 'Select your blood group',
                             errorStyle: const TextStyle(color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20))),
-                        value: doctors,
+                        value: depeartment,
                         onChanged: (value) {
-                          doctors = value;
+                          depeartment = value;
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please select a depertment';
+                            return 'Please select a blood group';
                           }
                           return null;
                         },
                         items: const [
                           DropdownMenuItem<String>(
-                              value: 'Internal medicine',
-                              child: Text('Internal medicine')),
+                              value: 'Oncologist', child: Text('Oncologist')),
                           DropdownMenuItem<String>(
-                              value: 'A-', child: Text('Ophthalmology')),
+                              value: 'A-', child: Text('A-')),
                           DropdownMenuItem<String>(
-                              value: 'B+', child: Text('Dermatology')),
+                              value: 'B+', child: Text('B+')),
                           DropdownMenuItem<String>(
-                              value: 'B-', child: Text('Gastroenterology')),
+                              value: 'B-', child: Text('B-')),
                           DropdownMenuItem<String>(
-                              value: 'O+', child: Text('Neurology')),
+                              value: 'O+', child: Text('O+')),
+                          DropdownMenuItem<String>(
+                              value: 'O-', child: Text('O-')),
+                          DropdownMenuItem<String>(
+                              value: 'AB+', child: Text('AB+')),
+                          DropdownMenuItem<String>(
+                              value: 'AB-', child: Text('AB-')),
                         ],
                       ),
                       SizedBox(height: 10.h),
                       GestureDetector(
                         onTap: () {
-                          if (formKey.currentState!.validate()) {}
+                          if (formKey.currentState!.validate()) {
+                            controller.showDoctorList(
+                                locationController.text, depeartment!);
+                          }
                         },
                         child: Container(
                           height: 50.h,
@@ -131,7 +144,7 @@ class DoctorsPage extends StatelessWidget {
                                 fontSize: 30, color: Colors.red.shade900),
                           )),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -139,14 +152,41 @@ class DoctorsPage extends StatelessWidget {
             ),
           ),
         ),
-        SliverFillRemaining(
-          child: Center(
-            child: Text(
-              'Comming soon',
-              style: TextStyle(fontSize: 20.sp, color: Colors.red.shade900),
-            ),
-          ),
-        )
+        Obx(() {
+          if (controller.isLoading.value) {
+            // Show a loading animation while fetching data
+            return const SliverFillRemaining(
+              child: Center(
+                child:
+                    CircularProgressIndicator(), // You can use your custom loading widget
+              ),
+            );
+          } else if (controller.searchComplete.value &&
+              controller.doctorsList.isEmpty) {
+            return const SliverFillRemaining(
+                child: Center(
+                    child: Text(
+              'No User found',
+              style: TextStyle(color: Colors.black),
+            )));
+          } else {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: controller.doctorsList.length,
+                (context, index) {
+                  return DoctorsTile(
+                    name: controller.doctorsList[index]!.name,
+                    title: controller.doctorsList[index]!.title,
+                    dept: controller.doctorsList[index]!.depertment,
+                    address: controller.doctorsList[index]!.address,
+                    imageUrl: controller.doctorsList[index]!.imageUrl,
+                    phone: controller.doctorsList[index]!.phone,
+                  );
+                },
+              ),
+            );
+          }
+        })
       ],
     ));
   }

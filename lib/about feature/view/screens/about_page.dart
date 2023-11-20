@@ -50,15 +50,24 @@ class AboutPage extends StatelessWidget {
                   color: Colors.green,
                 ),
                 SizedBox(width: 10.w),
-                GestureDetector(
-                  onTap: () async {
-                    final url = Uri(scheme: 'tel', path: '+880 1717468814');
-                    launchUrl(url);
-                  },
-                  child: Text(
-                    '+880 1717-468814',
-                    style: TextStyle(fontSize: 25.sp, color: Colors.green),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.mail),
+                    SizedBox(width: 10.w),
+                    GestureDetector(
+                      onTap: () async {
+                        final url = Uri(
+                            scheme: 'mailto',
+                            path: 'info@creativesoftware.com.bd');
+                        launchUrl(url);
+                      },
+                      child: Text(
+                        'info@creativesoftware.com.bd',
+                        style: TextStyle(fontSize: 25.sp, color: Colors.green),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -72,8 +81,9 @@ class AboutPage extends StatelessWidget {
                 const Icon(Icons.mail),
                 SizedBox(width: 10.w),
                 GestureDetector(
-                  onTap: () async{
-                    final url = Uri(scheme: 'mailto', path: 'antorofficial20@gmail.com');
+                  onTap: () async {
+                    final url = Uri(
+                        scheme: 'mailto', path: 'antorofficial20@gmail.com');
                     launchUrl(url);
                   },
                   child: Text(

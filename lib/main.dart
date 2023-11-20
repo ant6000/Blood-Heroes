@@ -1,7 +1,10 @@
-import 'package:blood_fighter/ambulance%20feature/view/screens/ambulance_search.dart';
+import 'package:blood_fighter/ambulance%20feature/binding/ambulance_binding.dart';
+import 'package:blood_fighter/ambulance%20feature/view/screens/ambulance_page.dart';
 import 'package:blood_fighter/authenticaiton%20feature/binding/authentication_binding.dart';
 import 'package:blood_fighter/blood%20banks%20feature/view/screens/blood_bank_page.dart';
+import 'package:blood_fighter/doctors%20feature/binding/doctor_page_binding.dart';
 import 'package:blood_fighter/hospitals%20feature/view/screens/hospitals_lists_page.dart';
+import 'package:blood_fighter/nurse%20feature/binding/nurse_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'authenticaiton feature/controller/auth_controller.dart';
@@ -19,7 +22,7 @@ import 'authenticaiton feature/view/screens/registration_page.dart';
 import 'health info feature/view/screens/health_info_page.dart';
 import 'home page/view/screens/home_page.dart';
 import 'home page/view/screens/splash_screen.dart';
-import 'nurse feature/view/screens/nurse_page.dart';
+import 'nurse feature/view/screens/ambulance_page.dart';
 import 'profile feature/view/screens/profile_page.dart';
 
 void main() async {
@@ -70,11 +73,11 @@ class MyApp extends StatelessWidget {
               GetPage(name: '/bloodRequest', page: () => BloodRequestPage()),
               GetPage(name: '/bloodBank', page: () => BloodBankPage()),
               GetPage(name: '/hospitals', page: () => HospitalSearchPage()),
-              GetPage(name: '/doctors', page: () => DoctorsPage()),
-              GetPage(name: '/nurse', page: () => const NursePage()),
+              GetPage(name: '/doctors', page: () => DoctorsPage(),binding: DoctorsBinding()),
+              GetPage(name: '/nurse', page: () =>  NursePage(),binding: NursePageBinding()),
               GetPage(name: '/emergency', page: () => const EmergencyPage()),
               GetPage(
-                  name: '/ambulance', page: () => const AmbulanceSearchPage()),
+                  name: '/ambulance', page: () =>  AmbulancePage(),binding: AmbulancePageBinding()),
               GetPage(name: '/healthInfo', page: () => const HealthInfoPage()),
               GetPage(name: '/about', page: () => const AboutPage()),
             ],
