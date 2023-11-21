@@ -15,34 +15,29 @@ class NurseTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10.w, bottom: 5.h,left: 10.h, right: 10.h),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.green.shade600,
-            boxShadow: const [
-              BoxShadow(
-                  color: Colors.black54,
-                  blurRadius: 5,
-                  offset: Offset(0, 4),
-                  spreadRadius: 5)
-            ]),
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+      child: Card(
+        elevation: 5,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              height: 50.h,
-              width: 50.w,
-              child: Image.asset('images/icon5.png'),
-            ),
+                height: 50, width: 50, child: Image.asset('images/icon5.png')),
             SizedBox(
-              width: 220.w,
+              width: 10.w,
+            ),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: TextStyle(fontSize: 20.sp)),
-                  Text('Location: $location',
-                      style: TextStyle(fontSize: 15.sp)),
+                  Text(
+                    name,
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
+                  Text(
+                    location,
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
                 ],
               ),
             ),

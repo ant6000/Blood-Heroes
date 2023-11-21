@@ -29,7 +29,7 @@ Future checkValidation(AuthController authController) async {
     Get.offNamed('/homePage');
   } else {
     // If email is not stored, navigate to LoginPage
-    Timer(const Duration(seconds: 2), () => Get.to(LoginPage()));
+    Timer(const Duration(seconds: 2), () => Get.offNamed('/login'));
   }
 }
 

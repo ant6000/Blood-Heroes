@@ -22,7 +22,7 @@ class AuthController extends GetxController {
         await SharedPref.setEmail(email);
       }
       showUserInfo(email);
-      Get.toNamed('/homePage');
+      Get.offNamed('/homePage');
     } catch (e) {
       Get.snackbar(
         'Log-In Error',

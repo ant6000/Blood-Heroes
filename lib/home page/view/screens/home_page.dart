@@ -57,8 +57,12 @@ class HomePage extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           radius: 30,
-                          backgroundColor: Colors.yellow,
-                          child: Icon(Icons.person),
+                          backgroundColor: Colors.green,
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                         SizedBox(width: 5.w),
                         Expanded(
@@ -187,7 +191,12 @@ class HomePage extends StatelessWidget {
                                       backgroundColor: Colors.green),
                                   child: const Text('Submit',
                                       style: TextStyle(color: Colors.white)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    final String playStoreUrl =
+                                        'https://play.google.com/store/apps/details?id=com.antor.blood_heroes';
+                                    final url = Uri.parse(playStoreUrl);
+                                    launchUrl(url);
+                                  },
                                 ),
                                 const SizedBox(width: 10),
                                 TextButton(

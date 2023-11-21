@@ -22,7 +22,7 @@ class ProfilePage extends StatelessWidget {
             ),
             const CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.green,
               child: Icon(
                 Icons.person,
                 size: 50,
@@ -41,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                 Text('Donation status: ', style: TextStyle(fontSize: 15.sp)),
                 Obx(
                   () => Switch(
-                    activeColor: Colors.blue.shade900,
+                    activeColor: Colors.green.shade900,
                     value: controller.userModel.value!.donationStatus,
                     onChanged: (value) {
                       controller.toggleDonationStatus(
@@ -52,7 +52,7 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
             Center(
-                child: Text('Lase Donation Date: -- -- --',
+                child: Text('Last Donation Date: -- -- --',
                     style: TextStyle(fontSize: 16.sp))),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -83,7 +83,7 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: Text(
                 'Number of Donation',
-                style: TextStyle(fontSize: 20.sp),
+                style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500),
               ),
             ),
             Padding(
@@ -117,7 +117,7 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: Text(
                 'Donation History',
-                style: TextStyle(fontSize: 20.sp),
+                style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500),
               ),
             ),
             Padding(
@@ -166,7 +166,7 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: Text(
                 'Blood Request History',
-                style: TextStyle(fontSize: 20.sp),
+                style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500),
               ),
             ),
           ],

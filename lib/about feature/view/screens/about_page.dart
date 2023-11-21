@@ -42,58 +42,35 @@ class AboutPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.red.shade900),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.phone,
-                  color: Colors.green,
+            GestureDetector(
+              onTap: () async {
+                final url =
+                    Uri(scheme: 'mailto', path: 'info@creativesoftware.com.bd');
+                launchUrl(url);
+              },
+              child: Text(
+                'info@creativesoftware.com.bd',
+                style: TextStyle(
+                  fontSize: 20.sp,
                 ),
-                SizedBox(width: 10.w),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.mail),
-                    SizedBox(width: 10.w),
-                    GestureDetector(
-                      onTap: () async {
-                        final url = Uri(
-                            scheme: 'mailto',
-                            path: 'info@creativesoftware.com.bd');
-                        launchUrl(url);
-                      },
-                      child: Text(
-                        'info@creativesoftware.com.bd',
-                        style: TextStyle(fontSize: 25.sp, color: Colors.green),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
             Text(
               'Antor Chakraborty',
               style: TextStyle(fontSize: 30.sp, color: Colors.yellow.shade900),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.mail),
-                SizedBox(width: 10.w),
-                GestureDetector(
-                  onTap: () async {
-                    final url = Uri(
-                        scheme: 'mailto', path: 'antorofficial20@gmail.com');
-                    launchUrl(url);
-                  },
-                  child: Text(
-                    'antorofficial20@gmail.com',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () async {
+                final url =
+                    Uri(scheme: 'mailto', path: 'antorofficial20@gmail.com');
+                launchUrl(url);
+              },
+              child: Text(
+                'antorofficial20@gmail.com',
+                style: TextStyle(
+                  fontSize: 20.sp,
                 ),
-              ],
+              ),
             ),
           ],
         ),

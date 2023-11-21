@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class DoctorsPage extends StatelessWidget {
   DoctorsPage({super.key});
-  
+
   String? depeartment;
   final locationController = TextEditingController();
   final controller = Get.find<DocController>();
@@ -19,8 +19,8 @@ class DoctorsPage extends StatelessWidget {
       slivers: [
         SliverAppBar(
           automaticallyImplyLeading: true,
-          title:
-              const Text('Search Doctor', style: TextStyle(color: Colors.white)),
+          title: const Text('Search Doctor',
+              style: TextStyle(color: Colors.white)),
           centerTitle: true,
           expandedHeight: 300.h,
           backgroundColor: Colors.red.shade900,
@@ -52,7 +52,7 @@ class DoctorsPage extends StatelessWidget {
                                     : Colors.white,
                             filled: true,
                             prefixIcon: const Icon(Icons.location_on),
-                            hintText: 'Enter Thana, Division',
+                            hintText: 'Enter location or Hospital name',
                             errorStyle: const TextStyle(color: Colors.white),
                             hintStyle: TextStyle(
                               color: Theme.of(context).brightness ==
@@ -89,7 +89,7 @@ class DoctorsPage extends StatelessWidget {
                             prefixIcon: const Icon(
                               Icons.water_drop,
                             ),
-                            hintText: 'Select your blood group',
+                            hintText: 'Select Specialist ',
                             errorStyle: const TextStyle(color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20))),
@@ -99,7 +99,7 @@ class DoctorsPage extends StatelessWidget {
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please select a blood group';
+                            return 'Please select a Sepecialist depeartment';
                           }
                           return null;
                         },
@@ -107,19 +107,39 @@ class DoctorsPage extends StatelessWidget {
                           DropdownMenuItem<String>(
                               value: 'Oncologist', child: Text('Oncologist')),
                           DropdownMenuItem<String>(
-                              value: 'A-', child: Text('A-')),
+                              value: 'Gynecologist',
+                              child: Text('Gynecologist')),
                           DropdownMenuItem<String>(
-                              value: 'B+', child: Text('B+')),
+                              value: 'Pediatrician',
+                              child: Text('Pediatrician')),
                           DropdownMenuItem<String>(
-                              value: 'B-', child: Text('B-')),
+                              value: 'Neurology', child: Text('Neurology')),
                           DropdownMenuItem<String>(
-                              value: 'O+', child: Text('O+')),
+                              value: 'Cardiology', child: Text('Cardiology')),
                           DropdownMenuItem<String>(
-                              value: 'O-', child: Text('O-')),
+                              value: 'Medicine', child: Text('Medicine')),
                           DropdownMenuItem<String>(
-                              value: 'AB+', child: Text('AB+')),
+                              value: 'Surgery', child: Text('Surgery')),
                           DropdownMenuItem<String>(
-                              value: 'AB-', child: Text('AB-')),
+                              value: 'Dermatology', child: Text('Dermatology')),
+                          DropdownMenuItem<String>(
+                              value: 'Nephrologist',
+                              child: Text('Nephrologist')),
+                          DropdownMenuItem<String>(
+                              value: 'Anesthesiologist',
+                              child: Text('Anesthesiologist')),
+                          DropdownMenuItem<String>(
+                              value: 'Otorhinolaryngology',
+                              child: Text('Otorhinolaryngology')),
+                          DropdownMenuItem<String>(
+                              value: 'Endocrinologist',
+                              child: Text('Endocrinologist')),
+                          DropdownMenuItem<String>(
+                              value: 'Gastroenterology',
+                              child: Text('Gastroenterology')),
+                          DropdownMenuItem<String>(
+                              value: 'Geriatrics', child: Text('Geriatrics')),
+
                         ],
                       ),
                       SizedBox(height: 10.h),

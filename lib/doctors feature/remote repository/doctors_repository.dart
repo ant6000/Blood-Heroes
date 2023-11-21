@@ -14,14 +14,13 @@ static Future<List<QueryDocumentSnapshot>> getDoctorsList(
     final results = querySnapshot.docs.where((doc) {
       final String address = doc['address'].toString().toLowerCase();
       final String depertment = doc['depertment'].toString().toLowerCase();
-      return address.contains(location.toLowerCase()) && depertment.contains(location.toLowerCase());
+      return address.contains(location.toLowerCase()) && depertment.contains(depertment.toLowerCase());
     });
 
     if (results.isNotEmpty) {
       return results.toList();
     } else {
-      debugPrint('repo cant found data1');
-      debugPrint('repo cant found data');
+      debugPrint('Doctor repo cant found data');
       return [];
     }
   }
